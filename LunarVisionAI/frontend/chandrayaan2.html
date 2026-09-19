@@ -1,0 +1,476 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chandrayaan-2 Mission Chronicle • ISRO Lunar Odyssey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:#020715;color:#e2e8f0;overflow-x:hidden;line-height:1.6;
+}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif}
+a{text-decoration:none;color:inherit}
+
+/* Header Navbar */
+.ch2-navbar{
+  height:72px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(2,7,21,0.95);border-bottom:1px solid #162744;position:sticky;top:0;z-index:1000;
+  backdrop-filter:blur(12px);
+}
+.brand-group{display:flex;align-items:center;gap:14px}
+.isro-logo-badge{
+  width:42px;height:42px;border-radius:10px;
+  background:linear-gradient(135deg,#ff9933,#138808);
+  display:grid;place-items:center;font-weight:900;font-size:18px;color:#fff;
+  box-shadow:0 0 20px rgba(255,153,51,0.35);
+}
+.brand-titles h2{font-size:17px;color:#fff;letter-spacing:-0.01em}
+.brand-titles p{font-size:11px;color:#7e94b8;margin-top:2px}
+.nav-actions{display:flex;align-items:center;gap:16px}
+.back-btn{
+  display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:6px;
+  background:#0f2347;border:1px solid #234377;color:#9cb5de;font-size:12px;font-weight:600;
+  transition:all .2s;
+}
+.back-btn:hover{color:#fff;background:#18366d;border-color:#506aff}
+.open-enhancer-btn{
+  display:inline-flex;align-items:center;gap:8px;padding:9px 20px;border-radius:6px;
+  background:linear-gradient(135deg,#506aff,#3d55d9);color:#fff;font-size:12px;font-weight:700;
+  box-shadow:0 0 20px rgba(80,106,255,0.4);transition:all .2s;
+}
+.open-enhancer-btn:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(80,106,255,0.6)}
+
+/* Hero Section */
+.ch2-hero{
+  padding:70px 5% 50px;position:relative;overflow:hidden;
+  border-bottom:1px solid #162744;
+  background:radial-gradient(circle at 75% 20%,rgba(40,70,165,.35),transparent 45%),radial-gradient(circle at 20% 80%,rgba(0,242,254,.08),transparent 40%),#020715;
+}
+.mission-tag{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:30px;
+  background:rgba(10,26,58,0.7);border:1px solid rgba(255,153,51,0.45);
+  font-size:11px;font-weight:700;color:#ff9933;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;
+  margin-bottom:20px;box-shadow:0 0 20px rgba(255,153,51,0.2);
+}
+.ch2-hero h1{
+  font-size:clamp(36px,5.5vw,64px);line-height:1.08;margin-bottom:20px;font-weight:900;
+  letter-spacing:-0.02em;
+}
+.ch2-hero h1 span{
+  background:linear-gradient(135deg,#ff9933 0%,#ffffff 50%,#138808 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  display:inline-block;filter:drop-shadow(0 0 20px rgba(255,153,51,0.4));
+}
+.ch2-hero p{
+  max-width:850px;color:#9cb2d2;font-size:16px;line-height:1.8;margin-bottom:30px;
+}
+
+/* Quick Mission HUD Stats */
+.mission-stats-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;
+  max-width:1150px;margin-top:25px;
+}
+.stat-card{
+  background:rgba(8,23,50,0.65);border:1px solid #1a3765;border-radius:10px;
+  padding:14px 16px;backdrop-filter:blur(10px);
+}
+.stat-tag{font-size:10px;color:#7e95b9;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.06em}
+.stat-number{font-size:17px;font-weight:800;color:#fff;margin-top:4px;font-family:'Space Grotesk',sans-serif}
+.stat-desc{font-size:11px;color:#859cbd;margin-top:2px}
+
+/* Main Container & Timeline */
+.main-wrapper{max-width:1200px;margin:50px auto;padding:0 5%}
+.timeline-section-title{
+  text-align:center;margin-bottom:50px;
+}
+.timeline-section-title h2{font-size:32px;color:#fff;margin-bottom:10px}
+.timeline-section-title p{color:#8ea3c4;font-size:14px;max-width:650px;margin:0 auto}
+
+/* Timeline Layout */
+.timeline{position:relative;padding:20px 0}
+.timeline::before{
+  content:"";position:absolute;top:0;bottom:0;left:50%;width:2px;
+  background:linear-gradient(180deg,#ff9933,#506aff 30%,#00f2fe 60%,#ef4444 80%,#38ef7d 100%);
+  transform:translateX(-50%);
+}
+@media(max-width:850px){
+  .timeline::before{left:30px}
+}
+
+.timeline-item{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:65px;position:relative;
+}
+.timeline-item:nth-child(even){flex-direction:row-reverse}
+@media(max-width:850px){
+  .timeline-item,.timeline-item:nth-child(even){
+    flex-direction:column;align-items:flex-start;padding-left:65px;
+  }
+}
+
+.timeline-dot{
+  position:absolute;left:50%;top:28px;transform:translateX(-50%);
+  width:24px;height:24px;border-radius:50%;background:#020715;border:3px solid #506aff;
+  box-shadow:0 0 15px currentColor;z-index:10;display:grid;place-items:center;
+}
+@media(max-width:850px){
+  .timeline-dot{left:30px}
+}
+.dot-core{width:8px;height:8px;border-radius:50%;background:currentColor}
+
+.timeline-card{
+  width:45%;background:linear-gradient(145deg,#071a38,#030e20);
+  border:1px solid #1c3968;border-radius:14px;padding:26px;
+  box-shadow:0 12px 35px rgba(0,0,0,0.4);position:relative;
+  transition:transform .25s ease,border-color .25s ease;
+}
+.timeline-card:hover{
+  transform:translateY(-4px);border-color:#506aff;
+  box-shadow:0 16px 40px rgba(0,0,0,0.6),0 0 25px rgba(80,106,255,0.25);
+}
+@media(max-width:850px){
+  .timeline-card{width:100%}
+}
+
+.stage-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:4px;
+  font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace;
+  letter-spacing:0.06em;margin-bottom:10px;text-transform:uppercase;
+}
+.timeline-card h3{font-size:22px;color:#fff;margin-bottom:8px}
+.timeline-date{font-size:12px;color:#60a5fa;font-family:'JetBrains Mono',monospace;margin-bottom:14px}
+.timeline-card p{font-size:13px;color:#9cb1d4;line-height:1.7;margin-bottom:16px}
+
+/* Timeline Media Image Box */
+.timeline-media{
+  width:100%;border-radius:10px;overflow:hidden;border:1px solid #234375;
+  background:#020817;margin-bottom:14px;position:relative;
+}
+.timeline-media img{width:100%;height:auto;display:block;transition:transform .4s}
+.timeline-media:hover img{transform:scale(1.03)}
+.media-caption{
+  padding:8px 12px;background:rgba(2,8,23,0.9);font-size:11px;color:#7e95b9;
+  border-top:1px solid #182e52;display:flex;justify-content:space-between;align-items:center;
+}
+
+/* Key Takeaways Box */
+.key-points{
+  background:rgba(9,26,56,0.6);border-left:3px solid #506aff;
+  border-radius:0 8px 8px 0;padding:12px 14px;margin-top:12px;
+}
+.point-item{font-size:12px;color:#b2c5e2;margin-bottom:6px;display:flex;gap:8px}
+.point-item span{color:#00f2fe;font-weight:bold}
+
+/* Failure Analysis Card Specific Styling */
+.failure-card{
+  border-color:rgba(239,68,68,0.4);
+  background:linear-gradient(145deg,#1f0a14,#080309);
+}
+.failure-card:hover{
+  border-color:#ef4444;box-shadow:0 0 30px rgba(239,68,68,0.3);
+}
+
+/* Success / Legacy Card */
+.success-card{
+  border-color:rgba(56,239,125,0.4);
+  background:linear-gradient(145deg,#06221a,#03120d);
+}
+.success-card:hover{
+  border-color:#38ef7d;box-shadow:0 0 30px rgba(56,239,125,0.3);
+}
+
+/* Bottom CTA Banner */
+.ch2-bottom-banner{
+  background:linear-gradient(135deg,#081b3d,#030c1d);border:1px solid #21437c;
+  border-radius:16px;padding:45px 35px;text-align:center;margin:60px 0 40px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.5);position:relative;overflow:hidden;
+}
+.ch2-bottom-banner h2{font-size:28px;color:#fff;margin-bottom:12px}
+.ch2-bottom-banner p{color:#9bb2d4;max-width:700px;margin:0 auto 25px;font-size:14px}
+.cta-flex{display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
+
+/* Footer */
+footer{
+  border-top:1px solid #142540;padding:30px 5%;text-align:center;
+  color:#6f86a8;font-size:12px;margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header Navbar -->
+<header class="ch2-navbar">
+  <div class="brand-group">
+    <div class="isro-logo-badge">🚀</div>
+    <div class="brand-titles">
+      <h2>Chandrayaan-2 Mission Chronicle</h2>
+      <p>ISRO • Deep Space Exploration History</p>
+    </div>
+  </div>
+  <div class="nav-actions">
+    <a href="index.html" class="back-btn">← Back to Dashboard</a>
+    <a href="index.html#enhance" class="open-enhancer-btn">✨ Launch AI Enhancer</a>
+  </div>
+</header>
+
+<!-- Hero Banner -->
+<section class="ch2-hero">
+  <div class="mission-tag">🇮🇳 ISRO DEEP SPACE MISSION • COMPLETE ODYSSEY</div>
+  <h1>Chandrayaan-2: The <span>Audacious Voyage</span> to the Moon</h1>
+  <p>
+    Launched on 22 July 2019, Chandrayaan-2 represented India's most complex interplanetary mission: carrying an Orbiter, the Vikram Lander, and the Pragyan Rover. While the lander encountered a heartbreaking descent anomaly at 2.1 km altitude, the Orbiter succeeded with flying colors—pioneering ultra-resolution 0.25 m/pixel radar and camera mapping that directly paved the path for Chandrayaan-3's historic touchdown.
+  </p>
+
+  <!-- Quick Mission HUD -->
+  <div class="mission-stats-grid">
+    <div class="stat-card">
+      <div class="stat-tag">Launch Date</div>
+      <div class="stat-number">22 July 2019</div>
+      <div class="stat-desc">14:43 IST • Sriharikota</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-tag">Launch Vehicle</div>
+      <div class="stat-number">GSLV Mk III-M1</div>
+      <div class="stat-desc">"Bahubali" Heavy Lifter</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-tag">Total Launch Mass</div>
+      <div class="stat-number">3,850 kg</div>
+      <div class="stat-desc">Orbiter (2379kg) + Vikram (1471kg)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-tag">OHRC Camera Res</div>
+      <div class="stat-number" style="color:#00f2fe;">0.25 m/pixel</div>
+      <div class="stat-desc">Sharpest lunar sensor in history</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-tag">Orbiter Operational Life</div>
+      <div class="stat-number" style="color:#38ef7d;">7.5+ Years</div>
+      <div class="stat-desc">Active in 100km polar orbit</div>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline Story Wrapper -->
+<main class="main-wrapper">
+  
+  <div class="timeline-section-title">
+    <h2>The 6 Chapters of the Mission</h2>
+    <p>Step-by-step pictorial chronicle of Chandrayaan-2: from fiery liftoff and trans-lunar flight to the descent anomaly and the enduring triumph of the OHRC orbiter.</p>
+  </div>
+
+  <div class="timeline">
+
+    <!-- STAGE 1: THE LIFTOFF -->
+    <div class="timeline-item">
+      <div class="timeline-dot" style="border-color:#ff9933; color:#ff9933;"><div class="dot-core"></div></div>
+      <div class="timeline-card">
+        <span class="stage-badge" style="background:rgba(255,153,51,0.15); color:#ff9933; border:1px solid #ff9933;">STAGE 01 • LIFTOFF</span>
+        <h3>The Roar of 'Bahubali' (GSLV Mk III-M1)</h3>
+        <div class="timeline-date">22 JULY 2019 • 14:43:12 IST</div>
+        
+        <div class="timeline-media">
+          <img src="images/ch2_launch.jpg" alt="GSLV Mk III Chandrayaan-2 Launch Pad">
+          <div class="media-caption">
+            <span>GSLV Mk III-M1 at Satish Dhawan Space Centre, Sriharikota</span>
+            <strong style="color:#ff9933;">SDSC SHAR</strong>
+          </div>
+        </div>
+
+        <p>
+          Standing on the Second Launch Pad at Sriharikota, India's heaviest rocket—the GSLV Mk III (nicknamed "Bahubali")—roared to life with twin S200 solid rocket boosters, producing a titanic 8,000 kN of thrust. It injected the 3,850 kg Chandrayaan-2 composite spacecraft into an elliptical Earth parking orbit of 169.7 × 45,475 km with pinpoint accuracy.
+        </p>
+
+        <div class="key-points">
+          <div class="point-item"><span>✦</span><strong>Orbit Raising:</strong> 5 planned Earth-bound maneuvers steadily boosted apogee toward 142,975 km.</div>
+          <div class="point-item"><span>✦</span><strong>Fuel Conservation:</strong> Highly efficient orbital mechanics left the Orbiter with over 7.5 years of surplus propellant.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 2: EARTH PICTURES & TRANS-LUNAR INJECTION -->
+    <div class="timeline-item">
+      <div class="timeline-dot" style="border-color:#60a5fa; color:#60a5fa;"><div class="dot-core"></div></div>
+      <div class="timeline-card">
+        <span class="stage-badge" style="background:rgba(96,165,250,0.15); color:#60a5fa; border:1px solid #60a5fa;">STAGE 02 • TRANS-LUNAR CRUISE</span>
+        <h3>First Glimpse of Home: LI4 Earth Images</h3>
+        <div class="timeline-date">03 AUGUST 2019 • TRANS-LUNAR INJECTION</div>
+
+        <div class="timeline-media">
+          <img src="images/ch2_earth.jpg" alt="Earth captured by Chandrayaan-2 LI4 Camera">
+          <div class="media-caption">
+            <span>First photograph of Planet Earth captured by Chandrayaan-2 LI4 camera</span>
+            <strong style="color:#60a5fa;">LI4 SENSOR</strong>
+          </div>
+        </div>
+
+        <p>
+          As the spacecraft prepared to depart Earth's gravitational sphere of influence, the on-board LI4 camera on the Vikram lander was activated. It beamed back stunning, crystalline portraits of planet Earth showing the Pacific Ocean and American continent, confirming camera calibration and imaging integrity.
+        </p>
+
+        <div class="timeline-media" style="margin-top:14px;">
+          <img src="images/ch2_mission_profile.jpg" alt="Chandrayaan-2 Mission Trajectory Profile">
+          <div class="media-caption">
+            <span>Complete orbital trajectory from Earth spirals to Lunar capture</span>
+            <strong style="color:#60a5fa;">ISRO FLIGHT PLAN</strong>
+          </div>
+        </div>
+
+        <div class="key-points">
+          <div class="point-item"><span>✦</span><strong>14 August 2019 (TLI):</strong> Trans-Lunar Injection burn of 1,203 seconds hurled the spacecraft into the lunar transfer trajectory.</div>
+          <div class="point-item"><span>✦</span><strong>Voyage Distance:</strong> Traveled ~384,400 km across deep interplanetary vacuum.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 3: LUNAR ORBIT INSERTION & SEPARATION -->
+    <div class="timeline-item">
+      <div class="timeline-dot" style="border-color:#a855f7; color:#a855f7;"><div class="dot-core"></div></div>
+      <div class="timeline-card">
+        <span class="stage-badge" style="background:rgba(168,85,247,0.15); color:#c084fc; border:1px solid #c084fc;">STAGE 03 • LUNAR ARRIVAL</span>
+        <h3>Lunar Orbit Capture &amp; Vikram Separation</h3>
+        <div class="timeline-date">20 AUGUST – 02 SEPTEMBER 2019</div>
+
+        <div class="timeline-media">
+          <img src="images/chandrayaan_psr1.jpg" alt="Chandrayaan-2 OHRC First High Resolution Moon Crater Surface">
+          <div class="media-caption">
+            <span>First ultra-sharp crater terrain beamed by the Chandrayaan-2 OHRC</span>
+            <strong style="color:#c084fc;">0.25 M/PX</strong>
+          </div>
+        </div>
+
+        <p>
+          On 20 August 2019, the main liquid engine fired for 1,738 seconds in a critical retrograde burn to achieve Lunar Orbit Insertion (LOI). Chandrayaan-2 was captured into a 114 × 18,072 km lunar orbit. Subsequent retrograde maneuvers trimmed it into a pristine circular 100 × 100 km polar orbit passing over both lunar poles every 2 hours.
+        </p>
+
+        <div class="key-points">
+          <div class="point-item"><span>✦</span><strong>02 September 2019:</strong> The Vikram lander smoothly separated from the Orbiter into a 35 × 101 km descent orbit.</div>
+          <div class="point-item"><span>✦</span><strong>Historic Camera Benchmark:</strong> The Orbiter High Resolution Camera (OHRC) achieved 0.25 m/px resolution—surpassing NASA's LROC NAC (0.5 m/px).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 4: THE 15 MINUTES OF TERROR -->
+    <div class="timeline-item">
+      <div class="timeline-dot" style="border-color:#ef4444; color:#ef4444;"><div class="dot-core"></div></div>
+      <div class="timeline-card failure-card">
+        <span class="stage-badge" style="background:rgba(239,68,68,0.2); color:#ef4444; border:1px solid #ef4444;">STAGE 04 • POWERED DESCENT</span>
+        <h3>The "15 Minutes of Terror": What Happened</h3>
+        <div class="timeline-date">07 SEPTEMBER 2019 • 01:38 IST TO 01:53 IST</div>
+
+        <p>
+          Powered descent commenced from 30 km altitude. The autonomous landing sequence was broken down into 4 synchronized phases:
+        </p>
+
+        <div class="key-points" style="border-left-color:#ef4444;">
+          <div class="point-item"><span style="color:#38ef7d;">✓</span><strong>Phase 1 (Rough Braking):</strong> Dropped from 30 km to 7.4 km. Speed dropped from 1,680 m/s to 146 m/s. <em>Performed 100% perfectly.</em></div>
+          <div class="point-item"><span style="color:#ffd700;">⚠</span><strong>Phase 2 (Attitude Hold Phase):</strong> Velocity error began building up slightly due to uneven 800 N throttle variations.</div>
+          <div class="point-item"><span style="color:#ef4444;">✗</span><strong>Phase 3 (Fine Braking Anomaly):</strong> At 2.1 km above the Moon, the onboard guidance software encountered a critical trajectory divergence conflict.</div>
+          <div class="point-item"><span style="color:#ef4444;">✗</span><strong>Loss of Signal (01:52 IST):</strong> Telemetry flatlined at 2.1 km altitude. Vikram impacted at ~50 m/s.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 5: FORENSIC FAILURE ANALYSIS -->
+    <div class="timeline-item">
+      <div class="timeline-dot" style="border-color:#ff8b26; color:#ff8b26;"><div class="dot-core"></div></div>
+      <div class="timeline-card failure-card">
+        <span class="stage-badge" style="background:rgba(255,139,38,0.2); color:#ff8b26; border:1px solid #ff8b26;">STAGE 05 • ROOT CAUSE ANALYSIS</span>
+        <h3>Technical Forensic: Why Did Vikram Crash?</h3>
+        <div class="timeline-date">EXPERT COMMITTEE FINDINGS (DR. SIVAN &amp; ISRO SAC)</div>
+
+        <div class="timeline-media">
+          <img src="images/ch2_crash_site.jpg" alt="Vikram Lander Impact Ejecta with scalebar">
+          <div class="media-caption">
+            <span>NASA LRO / ISRO forensic verification showing Vikram impact point (~500m off-target)</span>
+            <strong style="color:#ef4444;">CRASH SITE</strong>
+          </div>
+        </div>
+
+        <p>
+          ISRO constituted a high-level National Failure Analysis Committee. The investigation revealed <strong>three compounding technical flaws</strong> rather than a single engine hardware failure:
+        </p>
+
+        <div class="key-points" style="border-left-color:#ff8b26;">
+          <div class="point-item">
+            <span>1.</span>
+            <strong>Thruster Calibration Drift:</strong> The five 800 N variable-thrust liquid engines produced slightly higher thrust than modeled, causing altitude to shed faster than planned.
+          </div>
+          <div class="point-item">
+            <span>2.</span>
+            <strong>Trajectory Correction Clamp:</strong> The control software had a tight rate-limit on orientation changes (&lt;10°/sec). As the lander drifted off the nominal corridor, it couldn't turn aggressively enough to brake horizontally.
+          </div>
+          <div class="point-item">
+            <span>3.</span>
+            <strong>Landing Site Search Logic:</strong> To reach the designated 500 m × 500 m safe zone, the computer prioritized high horizontal translation rather than reducing vertical descent velocity, causing it to strike the surface at ~50 m/s (~180 km/h).
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 6: THE REDEMPTION & CHANDRAYAAN-3 -->
+    <div class="timeline-item">
+      <div class="timeline-dot" style="border-color:#38ef7d; color:#38ef7d;"><div class="dot-core"></div></div>
+      <div class="timeline-card success-card">
+        <span class="stage-badge" style="background:rgba(56,239,125,0.2); color:#38ef7d; border:1px solid #38ef7d;">STAGE 06 • THE REDEMPTION</span>
+        <h3>The 98% Success: How Ch-2 Won Chandrayaan-3</h3>
+        <div class="timeline-date">2019 – 2023 • SHIV SHAKTI POINT</div>
+
+        <p>
+          While public attention was fixed on the lander, <strong>the Chandrayaan-2 Orbiter achieved 98% of the mission's scientific objectives</strong> and remains fully operational today!
+        </p>
+
+        <div class="key-points" style="border-left-color:#38ef7d;">
+          <div class="point-item">
+            <span>✓</span>
+            <strong>Pioneering Water-Ice Discovery:</strong> Dual-frequency SAR and CLASS/OHRC sensors mapped volatile ice signatures inside Permanently Shadowed Regions (PSRs).
+          </div>
+          <div class="point-item">
+            <span>✓</span>
+            <strong>The Eyes for Chandrayaan-3:</strong> Chandrayaan-2's OHRC camera spent 4 years mapping the lunar south pole at 0.25 m/px, pinpointing hazard-free zones and expanding the landing box from 500 m to 4 km × 2.4 km.
+          </div>
+          <div class="point-item">
+            <span>✓</span>
+            <strong>Failure-Based Redesign:</strong> ISRO Chairman S. Somanath converted "success-based" architecture into "failure-based" redundancies in Chandrayaan-3 (wider legs, 4 thrusters, velocity tolerance up to 3 m/s).
+          </div>
+          <div class="point-item">
+            <span>✓</span>
+            <strong>Historic Touchdown (23 August 2023):</strong> Chandrayaan-3 landed flawlessly at <strong>Shiv Shakti Point</strong> (69.37°S, 32.35°E)—communicating through the orbiting Chandrayaan-2 relay!
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Action Card -->
+  <div class="ch2-bottom-banner">
+    <h2>Continue the Mission: Enhance Polar PSR Imagery</h2>
+    <p>
+      Our SIH1732 AI system takes the raw, low-illumination secondary scatter images captured by Chandrayaan-2's OHRC camera and transforms pitch-black crater floors into crystalline, scientifically actionable terrain.
+    </p>
+    <div class="cta-flex">
+      <a href="index.html#enhance" class="open-enhancer-btn" style="padding:13px 30px; font-size:14px;">✨ Open LunarVision AI Enhancer</a>
+      <a href="index.html#map" class="back-btn" style="padding:13px 26px; font-size:14px;">🗺️ Explore South Pole Crater Radar</a>
+    </div>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <div>🌕 <strong>LunarVision AI • Chandrayaan-2 OHRC SIH1732</strong></div>
+  <div style="margin-top:6px; color:#556e92;">Developed for <strong>CODE HEIST BUILD</strong> by Team LunarVision (Srijal, Abhay, Sheetal, Ayush)</div>
+  <div style="margin-top:6px;">Data &amp; Imagery Credits: ISRO (Indian Space Research Organisation) • NASA LRO</div>
+</footer>
+
+</body>
+</html>
