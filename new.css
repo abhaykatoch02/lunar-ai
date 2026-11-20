@@ -1,0 +1,62 @@
+
+*{               
+    margin:0%;
+    padding:0%;
+    font-size: 20px;
+}
+ h1~p{
+    color:red
+}
+   
+    
+    
+
+#a{
+    background-color:rgb(128, 128, 128);
+   
+    
+  
+   
+   
+    
+}
+.welcome{
+           /* display:none;---- to hide the div text*/
+          /*  display: inline;---- convert full block of div to inline with succedding div <only taking the width of text not the full line width( for block level elements to inline elements*/
+            background-color: yellow;
+            /*padding: 20px 30px;< first 20px is for top and bottom and second 30px is for left and right>*/
+            
+           /* padding: 2px 3px 5px;<top,left right,bottom>*/
+            
+           /* padding: 2px 3px 5px 6px<top right bottom left>*/
+}
+.del{
+    color:chocolate;
+    background-color:white;
+}
+a:hover{
+    
+    background-color: red;
+    color:rgb(255, 0, 0)
+
+}
+a:link{
+    color: blueviolet;
+}
+a:active{
+    background-color: chartreuse;
+}
+
+
+
+
+
+/*position:absolute
+position:relative
+position:sticky-----you need to set the position <mention everytime-top,bottom,left,right>
+position:fixed--mainly used for home pages,navigation
+
+-*-*-*-*--*-*-*--*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*--*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*--*-*-*--*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+
+float-left,right*/

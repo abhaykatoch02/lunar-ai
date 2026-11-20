@@ -1,0 +1,35 @@
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}
+ul{
+    background-color: red;
+    list-style-type: none;
+    /* for removing the bullets of unordered list we use list style type none;*/
+}
+ul li{
+    background-color: aqua;
+   display: inline;
+}
+ul li:hover{
+      
+    background-color: green;
+    color: blue;
+    transform: rotate(180deg);
+    cursor: pointer;
+    
+}
+.g{
+    ul li:hover{
+        color: greenyellow;
+        
+    }
+}
+
+/* display:flex - we convert row to column
+flex direction:row-- converted in row wise
+flex direction:column--converted in column wise
+
+
+display: grid
+grid tempelate: 2px 2px

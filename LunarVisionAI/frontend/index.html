@@ -710,13 +710,381 @@ footer{margin-top:25px;padding:22px 4%;display:flex;justify-content:space-betwee
 @media(max-width:1200px){.hero-content{width:64%}.moon-system{width:360px;height:360px;right:1%}}
 @media(max-width:1050px){.hero-content{width:62%}.moon-system{width:300px;height:300px;right:0;opacity:.85}}
 @media(max-width:850px){.navbar{height:60px}.nav-links,.sih-box{display:none}.hero{min-height:430px}.hero-content{width:100%}.moon-system{display:none}.dashboard{grid-template-columns:1fr}.results-card{grid-column:auto}.comparison{height:320px}.team-grid{grid-template-columns:1fr 1fr}footer{flex-direction:column;text-align:center}}
+
+/* ==========================================================
+   LUNAR PATHFINDER AI: REAL-TIME HAZARD & ROVER TRAVERSE STYLES
+   ========================================================== */
+.pathfinder-section {
+  margin-top: 35px;
+  background: radial-gradient(circle at 85% 15%, rgba(0, 242, 254, 0.08), transparent 40%),
+              radial-gradient(circle at 10% 80%, rgba(80, 106, 255, 0.06), transparent 50%),
+              linear-gradient(180deg, #071833 0%, #030d1e 100%);
+  border: 1px solid #1a3868;
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.45);
+}
+
+.pf-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(56, 239, 125, 0.12);
+  border: 1px solid #38ef7d;
+  color: #38ef7d;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 5px 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.pf-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0 16px 0;
+  padding: 12px 16px;
+  background: rgba(6, 20, 44, 0.7);
+  border: 1px solid #1c3d70;
+  border-radius: 10px;
+}
+
+.pf-presets-group, .pf-layers-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pf-group-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #7d96bd;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-right: 4px;
+}
+
+.pf-chip-btn {
+  padding: 6px 13px;
+  background: #081a36;
+  border: 1px solid #23477e;
+  border-radius: 6px;
+  color: #c0d1ed;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.pf-chip-btn:hover {
+  background: #112952;
+  border-color: #3f70b8;
+  color: #fff;
+}
+.pf-chip-btn.active {
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.25), rgba(80, 106, 255, 0.35));
+  border-color: #00f2fe;
+  color: #00f2fe;
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+  font-weight: 700;
+}
+
+.pf-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 24px;
+  margin-top: 14px;
+}
+
+.pf-viewport-wrapper {
+  background: #020914;
+  border: 1px solid #1d3e70;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.8);
+}
+
+.pf-top-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  background: rgba(8, 24, 52, 0.85);
+  border: 1px solid #1a3868;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 11px;
+  color: #8da4ca;
+  margin-bottom: 12px;
+}
+
+.pf-canvas-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10.5;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #1f437b;
+  cursor: crosshair;
+}
+
+#pfCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.pf-tools-strip {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.pf-tool-btn {
+  flex: 1;
+  min-width: 120px;
+  padding: 8px 10px;
+  background: #091c3c;
+  border: 1px solid #23477d;
+  color: #9cb1d4;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.pf-tool-btn:hover {
+  background: #122954;
+  color: #fff;
+  border-color: #3b6aa8;
+}
+.pf-tool-btn.active {
+  background: rgba(0, 242, 254, 0.15);
+  border-color: #00f2fe;
+  color: #00f2fe;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.25);
+}
+
+.pf-bottom-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: monospace;
+  font-size: 11px;
+  color: #6a88b5;
+  margin-top: 10px;
+  padding: 0 4px;
+}
+
+.pf-panel {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(150deg, #071a38, #030e20);
+  border: 1px solid #1d3b6a;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.pf-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #162744;
+  margin-bottom: 14px;
+}
+.pf-panel-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pf-status-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(56, 239, 125, 0.15);
+  color: #38ef7d;
+  border: 1px solid #38ef7d;
+  font-family: monospace;
+}
+.pf-status-badge.running {
+  background: rgba(0, 242, 254, 0.2);
+  color: #00f2fe;
+  border-color: #00f2fe;
+  animation: pulse 1.5s infinite;
+}
+
+.pf-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.pf-stat-box {
+  background: rgba(9, 26, 56, 0.6);
+  border: 1px solid #1a3663;
+  border-radius: 8px;
+  padding: 9px 12px;
+}
+.pf-stat-label {
+  font-size: 10px;
+  color: #7e94b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 3px;
+}
+.pf-stat-val {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f1f5f9;
+  font-family: monospace;
+}
+
+.pf-progress-wrap {
+  margin-bottom: 14px;
+}
+.pf-progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #9cb1d4;
+  margin-bottom: 5px;
+}
+.pf-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #08172e;
+  border: 1px solid #1d3e70;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.pf-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00f2fe, #38ef7d);
+  box-shadow: 0 0 10px rgba(56, 239, 125, 0.5);
+  transition: width 0.15s ease-out;
+}
+
+.pf-console-wrapper {
+  margin-bottom: 16px;
+  background: #020712;
+  border: 1px solid #17325b;
+  border-radius: 8px;
+  padding: 10px 12px;
+  height: 125px;
+  display: flex;
+  flex-direction: column;
+}
+.pf-console-title {
+  font-size: 10px;
+  color: #5c78a2;
+  font-family: monospace;
+  font-weight: 700;
+  border-bottom: 1px solid #0f2340;
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+.pf-console-feed {
+  overflow-y: auto;
+  flex: 1;
+  font-family: monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #38ef7d;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.pf-console-feed span.warn { color: #f59e0b; }
+.pf-console-feed span.err { color: #ef4444; }
+.pf-console-feed span.info { color: #38bdf8; }
+
+.pf-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: auto;
+}
+.pf-btn-simulate {
+  grid-column: span 2;
+  padding: 12px;
+  border: 0;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #00f2fe, #2563eb);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0, 242, 254, 0.35);
+  transition: all 0.2s;
+}
+.pf-btn-simulate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 242, 254, 0.55);
+}
+.pf-btn-sub {
+  padding: 9px;
+  border: 1px solid #23477d;
+  background: #081c3c;
+  color: #b3c5e0;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+.pf-btn-sub:hover {
+  background: #112b58;
+  color: #fff;
+  border-color: #3f70b8;
+}
+
+@media(max-width: 1050px) {
+  .pf-layout {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 </head>
 
 <body>
 <nav class="navbar">
   <a class="brand" href="#home"><span class="brand-moon"></span><span><h2>Lunar PSR Enhancer</h2><p>Chandrayaan-2 • OHRC</p></span></a>
-  <div class="nav-links"><a href="#home">Home</a><a href="#enhance">Enhance Image</a><a href="#map">Lunar Map</a><a href="gallery.html" target="_blank" style="color:#00f2fe;font-weight:700;">📸 Raw Gallery ↗</a><a href="chandrayaan2.html" target="_blank" style="color:#ff9933;font-weight:700;">🇮🇳 Chandrayaan-2 Odyssey ↗</a><a href="#about">About</a><a href="#team">Team</a></div>
+  <div class="nav-links"><a href="#home">Home</a><a href="#enhance">Enhance Image</a><a href="#map">Lunar Map</a><a href="#pathfinder" style="color:#38ef7d;font-weight:700;">⚡ Pathfinder AI</a><a href="gallery.html" target="_blank" style="color:#00f2fe;font-weight:700;">📸 Raw Gallery ↗</a><a href="chandrayaan2.html" target="_blank" style="color:#ff9933;font-weight:700;">🇮🇳 Chandrayaan-2 Odyssey ↗</a><a href="#about">About</a><a href="#team">Team</a></div>
   <div class="sih-box">CODE HEIST BUILD • SIH 1732</div>
 </nav>
 
@@ -1354,7 +1722,157 @@ footer{margin-top:25px;padding:22px 4%;display:flex;justify-content:space-betwee
           <span>⚡ Load Crater into PSR Enhancer</span>
           <span>→</span>
         </button>
+        <button class="load-enhancer-btn" style="background:linear-gradient(135deg,#00f2fe,#2563eb);margin-top:6px;box-shadow:0 4px 15px rgba(0,242,254,0.35);" onclick="loadTargetIntoPathfinder()">
+          <span>🚀 Launch into Rover Pathfinder AI</span>
+          <span>↓</span>
+        </button>
       </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==============================================
+     REAL-TIME PROBLEM SOLVER: LUNAR PATHFINDER AI
+     Autonomous Landing Hazard Analysis & Rover Traverse Simulator
+     ============================================== -->
+<section class="card pathfinder-section" id="pathfinder">
+  <div class="pf-header-badge">🚀 ISRO LUPEX & CHANDRAYAAN-4 • AUTONOMOUS MISSION PLANNER</div>
+  <h2 class="card-title" style="font-size:24px;margin-bottom:4px;">⚡ Lunar Pathfinder AI: Real-Time Hazard Avoidance & Rover Traverse Engine</h2>
+  <p class="card-subtitle" style="margin-bottom:18px;">
+    Autonomous pathfinding solving real-world lunar polar exploration bottlenecks: extreme slopes (>20° rollover danger), boulder cluster collisions, cryogenic cold-traps (&lt;40 K battery drain), and direct Earth communication blackouts. Click anywhere on the terrain to relocate the Touchdown Lander or Ice Target, or dynamically spawn boulder hazards!
+  </p>
+
+  <!-- Mission Presets & Dynamic Layer Toggles -->
+  <div class="pf-toolbar">
+    <div class="pf-presets-group">
+      <span class="pf-group-label">🎯 Mission Scenarios:</span>
+      <button class="pf-chip-btn active" id="presetShackleton" onclick="loadPfPreset('shackleton')">🌑 Shackleton Rim-to-Floor Descent</button>
+      <button class="pf-chip-btn" id="presetShivshakti" onclick="loadPfPreset('shivshakti')">🇮🇳 Shiv Shakti Point Patrol (Ch-3)</button>
+      <button class="pf-chip-btn" id="presetFaustini" onclick="loadPfPreset('faustini')">❄️ Faustini Cryo-Ice Traverse</button>
+    </div>
+
+    <div class="pf-layers-group">
+      <span class="pf-group-label">👁️ AI Visual Layers:</span>
+      <button class="pf-chip-btn active" id="toggleSlopeLayer" onclick="togglePfLayer('slope')">📊 Slope Heatmap: ON</button>
+      <button class="pf-chip-btn active" id="toggleBoulderLayer" onclick="togglePfLayer('boulder')">🪨 Boulders: ON</button>
+      <button class="pf-chip-btn active" id="toggleColdLayer" onclick="togglePfLayer('cold')">❄️ &lt;40K Cold-Trap: ON</button>
+      <button class="pf-chip-btn active" id="togglePathLayer" onclick="togglePfLayer('path')">🧭 A* Vector Path: ON</button>
+    </div>
+  </div>
+
+  <!-- Dual Column Interactive Grid -->
+  <div class="pf-layout">
+    
+    <!-- Left Column: Interactive Simulation Viewport -->
+    <div class="pf-viewport-wrapper">
+      <div class="pf-top-hud">
+        <span id="pfEngineStatus">SOLVER: A* MULTI-OBJECTIVE HEURISTIC</span>
+        <span style="color:#00f2fe;">GRID: 64 × 42 (0.25 m/CELL)</span>
+        <span id="pfMissionState" style="color:#38ef7d;">READY</span>
+      </div>
+
+      <div class="pf-canvas-container" id="pfCanvasContainer">
+        <canvas id="pfCanvas" width="640" height="420"></canvas>
+      </div>
+
+      <!-- Interactive Placement Tools -->
+      <div class="pf-tools-strip">
+        <button class="pf-tool-btn" id="toolStart" onclick="setPfToolMode('start')">
+          <span>🚀 Set Lander Site (Start)</span>
+        </button>
+        <button class="pf-tool-btn" id="toolGoal" onclick="setPfToolMode('goal')">
+          <span>🎯 Set Ice Target (Goal)</span>
+        </button>
+        <button class="pf-tool-btn" id="toolHazard" onclick="setPfToolMode('hazard')">
+          <span>⚠️ Place Boulder Hazard</span>
+        </button>
+        <button class="pf-tool-btn" onclick="clearCustomHazards()">
+          <span>🧹 Clear Custom Hazards</span>
+        </button>
+      </div>
+
+      <div class="pf-bottom-hud">
+        <span id="pfCursorStats">CURSOR: (X: --, Y: --) | SLOPE: --° | ZONE: --</span>
+        <span style="color:#60a5fa;">CLICK CANVAS TO INTERACT</span>
+      </div>
+    </div>
+
+    <!-- Right Column: Real-Time Mission Telemetry HUD & AI Console -->
+    <div class="pf-panel">
+      <div class="pf-panel-header">
+        <div class="pf-panel-title">
+          <span>🛰️ Mission Telemetry</span>
+          <span style="font-size:11px;color:#7e94b8;font-weight:normal;">ISRO LUPEX Traverse Protocol</span>
+        </div>
+        <span class="pf-status-badge" id="pfLiveStatus">READY FOR TRAVERSE</span>
+      </div>
+
+      <!-- Real-Time Metric Counters -->
+      <div class="pf-stats-grid">
+        <div class="pf-stat-box">
+          <div class="pf-stat-label">Traverse Distance</div>
+          <div class="pf-stat-val" id="pfMetricDist" style="color:#00f2fe;">1.48 km</div>
+        </div>
+        <div class="pf-stat-box">
+          <div class="pf-stat-label">Maximum Slope</div>
+          <div class="pf-stat-val" id="pfMetricSlope" style="color:#38ef7d;">12.4° (SAFE)</div>
+        </div>
+        <div class="pf-stat-box">
+          <div class="pf-stat-label">Battery Power Margin</div>
+          <div class="pf-stat-val" id="pfMetricBattery" style="color:#ffd700;">88.5 Wh</div>
+        </div>
+        <div class="pf-stat-box">
+          <div class="pf-stat-label">Cryo Cold-Trap Time</div>
+          <div class="pf-stat-val" id="pfMetricCryo" style="color:#60a5fa;">00:00 min</div>
+        </div>
+        <div class="pf-stat-box" style="grid-column:span 2;">
+          <div class="pf-stat-label">Water-Ice Extraction Yield Potential</div>
+          <div class="pf-stat-val" id="pfMetricIce" style="color:#38ef7d;">94.8% High Confidence</div>
+        </div>
+      </div>
+
+      <!-- Progress Meter -->
+      <div class="pf-progress-wrap">
+        <div class="pf-progress-header">
+          <span>Autonomous Traverse Progress</span>
+          <span id="pfProgressVal" style="font-family:monospace;font-weight:bold;color:#00f2fe;">0%</span>
+        </div>
+        <div class="pf-progress-bar">
+          <div class="pf-progress-fill" id="pfProgressBar"></div>
+        </div>
+      </div>
+
+      <!-- Live Terminal Console -->
+      <div class="pf-console-wrapper">
+        <div class="pf-console-title">
+          <span>CONSOLE: AUTONOMOUS AI DECISION FEED</span>
+          <span style="color:#38ef7d;">● STREAM ACTIVE</span>
+        </div>
+        <div class="pf-console-feed" id="pfConsole">
+          <span class="info">[T+00.0s] System initialized: LUPEX/Ch-4 Autonomous Traverse Engine.</span>
+          <span>[T+00.1s] DEM topographic terrain mesh generated (0.25 m/px).</span>
+          <span>[T+00.2s] A* solver computed optimal descent corridor avoiding >22° scarps.</span>
+          <span class="info">[T+00.3s] Click "Run Autonomous Traverse Simulation" to engage rover drive.</span>
+        </div>
+      </div>
+
+      <!-- Interactive Actions -->
+      <div class="pf-actions-grid">
+        <button class="pf-btn-simulate" id="pfSimulateBtn" onclick="togglePfSimulation()">
+          <span>▶ Run Autonomous Traverse Simulation</span>
+        </button>
+        <button class="pf-btn-sub" onclick="resetPfRover()">
+          <span>↺ Reset Rover</span>
+        </button>
+        <button class="pf-btn-sub" onclick="generateRandomBoulders()">
+          <span>🎲 Random Hazards</span>
+        </button>
+        <button class="pf-btn-sub" style="grid-column:span 2;" onclick="exportPfManifest()">
+          <span>📥 Export Mission Waypoint Manifest (.JSON)</span>
+        </button>
+      </div>
+
     </div>
 
   </div>
@@ -1564,7 +2082,13 @@ function showPage(){
   if(aboutPage) aboutPage.classList.toggle("active", isAbout);
   if(teamPage) teamPage.classList.toggle("active", isTeam);
 
-  if (hash === "#map") {
+  if (hash === "#pathfinder") {
+    const pfEl = document.getElementById("pathfinder");
+    if (pfEl) {
+      setTimeout(() => pfEl.scrollIntoView({ behavior: 'smooth' }), 50);
+      return;
+    }
+  } else if (hash === "#map") {
     const mapEl = document.getElementById("map");
     if (mapEl) {
       setTimeout(() => mapEl.scrollIntoView({ behavior: 'smooth' }), 50);
@@ -1991,6 +2515,21 @@ function loadTargetIntoEnhancer() {
   }
 }
 
+function loadTargetIntoPathfinder() {
+  const target = LUNAR_TARGETS[currentSelectedTarget];
+  if (!target) return;
+  let presetKey = 'shackleton';
+  if (currentSelectedTarget === 'shivshakti') presetKey = 'shivshakti';
+  else if (currentSelectedTarget === 'faustini' || currentSelectedTarget === 'shoemaker' || currentSelectedTarget === 'cabeus') presetKey = 'faustini';
+  if (window.loadPfPreset) {
+    window.loadPfPreset(presetKey);
+  }
+  const pfEl = document.getElementById("pathfinder");
+  if (pfEl) {
+    pfEl.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
 /* ==========================================================
    CROSS-PAGE GALLERY IMAGE TRANSFER & AUTO-LOAD SYSTEM
    ========================================================== */
@@ -2145,6 +2684,908 @@ if (radarViewport) {
     }
   });
 }
+
+/* ==========================================================
+   LUNAR PATHFINDER AI: REAL-TIME HAZARD & ROVER ENGINE
+   Autonomous Traverse Solver for Polar PSR Exploration
+   ========================================================== */
+(function initLunarPathfinder() {
+  const canvas = document.getElementById('pfCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  const GRID_W = 64;
+  const GRID_H = 42;
+  const CELL_W = canvas.width / GRID_W;
+  const CELL_H = canvas.height / GRID_H;
+
+  // Grid Data
+  let terrainGrid = [];
+  let startNode = { x: 8, y: 10 };
+  let goalNode = { x: 50, y: 28 };
+  let customBoulders = [];
+  let optimalPath = [];
+
+  // UI & Layer States
+  let activePreset = 'shackleton';
+  let toolMode = 'none';
+  const activeLayers = {
+    slope: true,
+    boulder: true,
+    cold: true,
+    path: true
+  };
+
+  // Rover Simulation State
+  let rover = {
+    active: false,
+    x: startNode.x * CELL_W + CELL_W / 2,
+    y: startNode.y * CELL_H + CELL_H / 2,
+    heading: 0,
+    speed: 1.8,
+    pathIdx: 0,
+    treads: [],
+    battery: 100.0,
+    distKm: 0.0,
+    maxSlope: 0,
+    cryoSec: 0,
+    scanAngle: 0,
+    lastFrameTime: performance.now()
+  };
+
+  // --- Terrain Generator ---
+  function generateTerrain(preset) {
+    terrainGrid = [];
+    customBoulders = [];
+
+    let craterCenterX = 38;
+    let craterCenterY = 24;
+    let craterRadius = 18;
+    let baseDepth = -4180;
+    let rimElev = -2150;
+
+    if (preset === 'shivshakti') {
+      craterCenterX = 24;
+      craterCenterY = 20;
+      craterRadius = 12;
+      baseDepth = -2600;
+      rimElev = -2100;
+    } else if (preset === 'faustini') {
+      craterCenterX = 44;
+      craterCenterY = 22;
+      craterRadius = 20;
+      baseDepth = -3950;
+      rimElev = -2250;
+    }
+
+    for (let y = 0; y < GRID_H; y++) {
+      terrainGrid[y] = [];
+      for (let x = 0; x < GRID_W; x++) {
+        const dx = x - craterCenterX;
+        const dy = y - craterCenterY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        // Elevation calculation using smooth crater profile
+        let elev = rimElev;
+        let isCold = false;
+
+        if (dist < craterRadius) {
+          const normDist = dist / craterRadius;
+          elev = baseDepth + (rimElev - baseDepth) * Math.pow(normDist, 2.2);
+          if (normDist < 0.75) isCold = true;
+        } else {
+          // Rolling ejecta blanket outside rim
+          elev = rimElev + Math.sin(x * 0.25) * 35 + Math.cos(y * 0.25) * 30;
+        }
+
+        // Natural crater ramp / ridge pass for Shackleton (descent route)
+        if (preset === 'shackleton') {
+          const passDist = Math.hypot(x - (craterCenterX - 10), y - (craterCenterY - 8));
+          if (passDist < 7) {
+            elev += 240 * (1 - passDist / 7); // Smooth ramp
+          }
+        }
+
+        // Micro-roughness
+        elev += (Math.sin(x * 0.8) * Math.cos(y * 0.8)) * 12;
+
+        terrainGrid[y][x] = {
+          elevation: elev,
+          slope: 0,
+          isCold: isCold,
+          hasBoulder: false,
+          boulderSize: 0
+        };
+      }
+    }
+
+    // Compute Slopes (finite differences)
+    for (let y = 1; y < GRID_H - 1; y++) {
+      for (let x = 1; x < GRID_W - 1; x++) {
+        const dzdx = (terrainGrid[y][x + 1].elevation - terrainGrid[y][x - 1].elevation) / (2 * 12);
+        const dzdy = (terrainGrid[y + 1][x].elevation - terrainGrid[y - 1][x].elevation) / (2 * 12);
+        const grad = Math.sqrt(dzdx * dzdx + dzdy * dzdy);
+        terrainGrid[y][x].slope = Math.min(38, Math.round(Math.atan(grad) * (180 / Math.PI) * 10) / 10);
+      }
+    }
+
+    // Scatter realistic crater boulders along steep scarps
+    const boulderCount = preset === 'faustini' ? 22 : (preset === 'shivshakti' ? 12 : 16);
+    for (let i = 0; i < boulderCount; i++) {
+      const bx = Math.floor(Math.random() * (GRID_W - 12)) + 6;
+      const by = Math.floor(Math.random() * (GRID_H - 12)) + 6;
+      const bDist = Math.hypot(bx - craterCenterX, by - craterCenterY);
+      // More likely on inner wall rim or near center
+      if (bDist > 8 && bDist < craterRadius + 5) {
+        terrainGrid[by][bx].hasBoulder = true;
+        terrainGrid[by][bx].boulderSize = 1.2 + Math.random() * 1.8;
+      }
+    }
+
+    // Configure Preset-specific Waypoints
+    if (preset === 'shackleton') {
+      startNode = { x: 7, y: 9 };
+      goalNode = { x: 44, y: 26 };
+    } else if (preset === 'shivshakti') {
+      startNode = { x: 12, y: 16 };
+      goalNode = { x: 50, y: 26 };
+    } else if (preset === 'faustini') {
+      startNode = { x: 8, y: 14 };
+      goalNode = { x: 54, y: 32 };
+    }
+  }
+
+  // --- Real-Time A* Vectorized Pathfinding Algorithm ---
+  function computeAStarPath() {
+    const startKey = `${startNode.x},${startNode.y}`;
+    const goalKey = `${goalNode.x},${goalNode.y}`;
+
+    const openSet = [startNode];
+    const openSetMap = new Map();
+    openSetMap.set(startKey, true);
+
+    const cameFrom = new Map();
+    const gScore = new Map();
+    gScore.set(startKey, 0);
+
+    const fScore = new Map();
+    fScore.set(startKey, heuristic(startNode, goalNode));
+
+    function heuristic(a, b) {
+      const dx = Math.abs(a.x - b.x);
+      const dy = Math.abs(a.y - b.y);
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    let iterations = 0;
+    const maxIterations = 3500;
+
+    while (openSet.length > 0 && iterations < maxIterations) {
+      iterations++;
+
+      // Find node with lowest fScore
+      let currentIdx = 0;
+      let lowestF = Infinity;
+      for (let i = 0; i < openSet.length; i++) {
+        const k = `${openSet[i].x},${openSet[i].y}`;
+        const f = fScore.get(k) ?? Infinity;
+        if (f < lowestF) {
+          lowestF = f;
+          currentIdx = i;
+        }
+      }
+
+      const current = openSet[currentIdx];
+      const currentKey = `${current.x},${current.y}`;
+
+      if (current.x === goalNode.x && current.y === goalNode.y) {
+        // Reconstruct path
+        const totalPath = [current];
+        let currStep = currentKey;
+        while (cameFrom.has(currStep)) {
+          const prev = cameFrom.get(currStep);
+          totalPath.unshift(prev);
+          currStep = `${prev.x},${prev.y}`;
+        }
+        optimalPath = totalPath;
+        updatePathMetrics();
+        return true;
+      }
+
+      openSet.splice(currentIdx, 1);
+      openSetMap.delete(currentKey);
+
+      // 8-directional exploration
+      const neighbors = [
+        { x: current.x + 1, y: current.y, cost: 1.0 },
+        { x: current.x - 1, y: current.y, cost: 1.0 },
+        { x: current.x, y: current.y + 1, cost: 1.0 },
+        { x: current.x, y: current.y - 1, cost: 1.0 },
+        { x: current.x + 1, y: current.y + 1, cost: 1.414 },
+        { x: current.x - 1, y: current.y - 1, cost: 1.414 },
+        { x: current.x + 1, y: current.y - 1, cost: 1.414 },
+        { x: current.x - 1, y: current.y + 1, cost: 1.414 }
+      ];
+
+      for (let nb of neighbors) {
+        if (nb.x < 1 || nb.x >= GRID_W - 1 || nb.y < 1 || nb.y >= GRID_H - 1) continue;
+
+        const cell = terrainGrid[nb.y][nb.x];
+
+        // Check custom user-placed hazards
+        let customHit = false;
+        for (let b of customBoulders) {
+          if (Math.hypot(nb.x - b.x, nb.y - b.y) <= b.r) {
+            customHit = true;
+            break;
+          }
+        }
+        if (customHit || cell.hasBoulder) continue; // Impassable collision obstacle!
+
+        // Steep slope impassable threshold (>22° causes rover tip-over)
+        if (cell.slope >= 22.0) continue;
+
+        // Traverse Cost Function: Base distance + Exponential slope penalty + Cold trap penalty
+        let terrainPenalty = 1.0;
+        if (cell.slope > 10.0) {
+          terrainPenalty += (cell.slope - 10.0) * 1.8;
+        }
+        if (cell.isCold) {
+          terrainPenalty += 0.8; // Prefer solar-lit ridges when feasible
+        }
+
+        const nbKey = `${nb.x},${nb.y}`;
+        const tentativeG = (gScore.get(currentKey) ?? Infinity) + nb.cost * terrainPenalty;
+
+        if (tentativeG < (gScore.get(nbKey) ?? Infinity)) {
+          cameFrom.set(nbKey, current);
+          gScore.set(nbKey, tentativeG);
+          const f = tentativeG + heuristic(nb, goalNode);
+          fScore.set(nbKey, f);
+
+          if (!openSetMap.has(nbKey)) {
+            openSet.push(nb);
+            openSetMap.set(nbKey, true);
+          }
+        }
+      }
+    }
+
+    // Fallback if blocked
+    logConsole("⚠️ High hazard density: direct path constrained. Clear boulders or select alternate ridge.", "warn");
+    optimalPath = [startNode, goalNode];
+    return false;
+  }
+
+  // --- Metrics Updater ---
+  function updatePathMetrics() {
+    let totalDistM = 0;
+    let maxSlope = 0;
+    let coldCount = 0;
+
+    for (let i = 0; i < optimalPath.length - 1; i++) {
+      const p1 = optimalPath[i];
+      const p2 = optimalPath[i + 1];
+      const stepDist = Math.hypot(p2.x - p1.x, p2.y - p1.y) * 25; // 25 meters per grid cell
+      totalDistM += stepDist;
+
+      const cell = terrainGrid[p1.y]?.[p1.x];
+      if (cell) {
+        if (cell.slope > maxSlope) maxSlope = cell.slope;
+        if (cell.isCold) coldCount++;
+      }
+    }
+
+    const distKm = (totalDistM / 1000).toFixed(2);
+    const metricDist = document.getElementById('pfMetricDist');
+    const metricSlope = document.getElementById('pfMetricSlope');
+    const metricIce = document.getElementById('pfMetricIce');
+
+    if (metricDist) metricDist.textContent = `${distKm} km`;
+    if (metricSlope) {
+      metricSlope.textContent = `${maxSlope}° (${maxSlope <= 15 ? 'SAFE' : 'CAUTION'})`;
+      metricSlope.style.color = maxSlope <= 15 ? '#38ef7d' : '#f59e0b';
+    }
+    if (metricIce) {
+      const goalCell = terrainGrid[goalNode.y]?.[goalNode.x];
+      if (goalCell && goalCell.isCold) {
+        metricIce.textContent = "96.4% High Conf. Cold Trap";
+        metricIce.style.color = "#38ef7d";
+      } else {
+        metricIce.textContent = "42.0% Polar Regolith";
+        metricIce.style.color = "#ffd700";
+      }
+    }
+  }
+
+  // --- AI Console Logger ---
+  function logConsole(text, type = "normal") {
+    const consoleEl = document.getElementById('pfConsole');
+    if (!consoleEl) return;
+    const line = document.createElement('span');
+    if (type !== "normal") line.className = type;
+    const timeSec = ((performance.now() % 60000) / 1000).toFixed(1);
+    line.textContent = `[T+${timeSec.padStart(4, '0')}s] ${text}`;
+    consoleEl.appendChild(line);
+    consoleEl.scrollTop = consoleEl.scrollHeight;
+
+    // Limit log lines to 40
+    while (consoleEl.children.length > 40) {
+      consoleEl.removeChild(consoleEl.firstChild);
+    }
+  }
+
+  // --- Canvas Rendering Loop ---
+  function render() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 1. Draw Lunar Topography Background
+    for (let y = 0; y < GRID_H; y++) {
+      for (let x = 0; x < GRID_W; x++) {
+        const cell = terrainGrid[y][x];
+        const px = x * CELL_W;
+        const py = y * CELL_H;
+
+        // Base Regolith Shading
+        const normElev = (cell.elevation - (-4200)) / ((-2000) - (-4200)); // 0 to 1
+        const grey = Math.floor(18 + normElev * 45);
+        ctx.fillStyle = `rgb(${grey}, ${grey + 2}, ${grey + 6})`;
+        ctx.fillRect(px, py, CELL_W + 0.5, CELL_H + 0.5);
+
+        // Cold-Trap Overlay (<40 K)
+        if (activeLayers.cold && cell.isCold) {
+          ctx.fillStyle = 'rgba(0, 160, 255, 0.18)';
+          ctx.fillRect(px, py, CELL_W + 0.5, CELL_H + 0.5);
+        }
+
+        // Slope Hazard Heatmap Overlay
+        if (activeLayers.slope) {
+          if (cell.slope >= 22) {
+            ctx.fillStyle = 'rgba(255, 68, 68, 0.45)'; // Impassable cliff
+            ctx.fillRect(px, py, CELL_W + 0.5, CELL_H + 0.5);
+          } else if (cell.slope >= 14) {
+            ctx.fillStyle = 'rgba(255, 170, 0, 0.28)'; // Moderate slope
+            ctx.fillRect(px, py, CELL_W + 0.5, CELL_H + 0.5);
+          } else if (cell.slope < 8) {
+            ctx.fillStyle = 'rgba(56, 239, 125, 0.08)'; // Smooth traverse corridor
+            ctx.fillRect(px, py, CELL_W + 0.5, CELL_H + 0.5);
+          }
+        }
+      }
+    }
+
+    // 2. Cold-Trap Boundary Glow
+    if (activeLayers.cold) {
+      ctx.save();
+      ctx.strokeStyle = 'rgba(0, 242, 254, 0.25)';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([3, 3]);
+      for (let y = 1; y < GRID_H - 1; y++) {
+        for (let x = 1; x < GRID_W - 1; x++) {
+          if (terrainGrid[y][x].isCold && (!terrainGrid[y - 1][x].isCold || !terrainGrid[y][x - 1].isCold)) {
+            ctx.strokeRect(x * CELL_W, y * CELL_H, CELL_W, CELL_H);
+          }
+        }
+      }
+      ctx.restore();
+    }
+
+    // 3. Natural & Custom Boulders
+    if (activeLayers.boulder) {
+      for (let y = 0; y < GRID_H; y++) {
+        for (let x = 0; x < GRID_W; x++) {
+          if (terrainGrid[y][x].hasBoulder) {
+            const bx = x * CELL_W + CELL_W / 2;
+            const by = y * CELL_H + CELL_H / 2;
+            const r = terrainGrid[y][x].boulderSize * 2.5;
+
+            // Boulder shadow
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+            ctx.beginPath();
+            ctx.ellipse(bx + r * 0.7, by + r * 0.7, r * 1.2, r * 0.7, Math.PI / 4, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Boulder rock
+            const bGrad = ctx.createRadialGradient(bx - r * 0.3, by - r * 0.3, 1, bx, by, r);
+            bGrad.addColorStop(0, '#c7d2fe');
+            bGrad.addColorStop(0.7, '#475569');
+            bGrad.addColorStop(1, '#0f172a');
+            ctx.fillStyle = bGrad;
+            ctx.beginPath();
+            ctx.arc(bx, by, r, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#ef4444';
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw User Placed Custom Boulders
+      for (let cb of customBoulders) {
+        const cx = cb.x * CELL_W + CELL_W / 2;
+        const cy = cb.y * CELL_H + CELL_H / 2;
+        const cr = cb.r * CELL_W;
+
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.25)';
+        ctx.strokeStyle = '#ef4444';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(cx, cy, cr, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ef4444';
+        ctx.font = '9px monospace';
+        ctx.fillText('HAZARD', cx - 18, cy + 3);
+      }
+    }
+
+    // 4. Rover Tread Tracks
+    if (rover.treads.length > 1) {
+      ctx.save();
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.45)';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      for (let i = 0; i < rover.treads.length; i++) {
+        const tp = rover.treads[i];
+        if (i === 0) ctx.moveTo(tp.x, tp.y);
+        else ctx.lineTo(tp.x, tp.y);
+      }
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // 5. A* Vector Path Line
+    if (activeLayers.path && optimalPath.length > 1) {
+      ctx.save();
+      ctx.strokeStyle = '#00f2fe';
+      ctx.lineWidth = 2.5;
+      ctx.shadowColor = '#00f2fe';
+      ctx.shadowBlur = 8;
+      ctx.setLineDash([5, 3]);
+
+      ctx.beginPath();
+      for (let i = 0; i < optimalPath.length; i++) {
+        const pt = optimalPath[i];
+        const px = pt.x * CELL_W + CELL_W / 2;
+        const py = pt.y * CELL_H + CELL_H / 2;
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      // Waypoint Markers
+      ctx.fillStyle = 'rgba(0, 242, 254, 0.7)';
+      for (let i = 1; i < optimalPath.length - 1; i += 3) {
+        const pt = optimalPath[i];
+        ctx.beginPath();
+        ctx.arc(pt.x * CELL_W + CELL_W / 2, pt.y * CELL_H + CELL_H / 2, 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // 6. Draw Start Lander Site (🚀 Vikram / Touchdown Base)
+    const sx = startNode.x * CELL_W + CELL_W / 2;
+    const sy = startNode.y * CELL_H + CELL_H / 2;
+
+    ctx.save();
+    // Glowing safe touchdown radius
+    ctx.strokeStyle = '#38ef7d';
+    ctx.fillStyle = 'rgba(56, 239, 125, 0.15)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.arc(sx, sy, 14, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    // Lander Icon / Polygon
+    ctx.fillStyle = '#ff9933'; // Saffron ISRO gold
+    ctx.fillRect(sx - 5, sy - 5, 10, 10);
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(sx - 3, sy - 3, 6, 6);
+    ctx.fillStyle = '#38ef7d';
+    ctx.fillRect(sx - 1.5, sy - 1.5, 3, 3);
+    ctx.font = 'bold 9px monospace';
+    ctx.fillText('LANDER', sx - 18, sy - 17);
+    ctx.restore();
+
+    // 7. Draw Goal Target (🎯 Water-Ice Volatiles Core)
+    const gx = goalNode.x * CELL_W + CELL_W / 2;
+    const gy = goalNode.y * CELL_H + CELL_H / 2;
+
+    ctx.save();
+    const pulseR = 12 + Math.sin(performance.now() * 0.006) * 3;
+    ctx.strokeStyle = '#00f2fe';
+    ctx.fillStyle = 'rgba(0, 242, 254, 0.2)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(gx, gy, pulseR, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    // Ice Target Crosshair
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(gx - 8, gy); ctx.lineTo(gx + 8, gy);
+    ctx.moveTo(gx, gy - 8); ctx.lineTo(gx, gy + 8);
+    ctx.stroke();
+
+    ctx.fillStyle = '#00f2fe';
+    ctx.font = 'bold 9px monospace';
+    ctx.fillText('❄️ ICE CORE', gx - 24, gy + 22);
+    ctx.restore();
+
+    // 8. Draw Autonomous Rover (ISRO Pragyan / LUPEX)
+    drawRover();
+
+    // Loop
+    requestAnimationFrame(render);
+  }
+
+  function drawRover() {
+    const rx = rover.x;
+    const ry = rover.y;
+
+    ctx.save();
+    ctx.translate(rx, ry);
+    ctx.rotate(rover.heading);
+
+    // Forward Autonomous LIDAR / Stereo Vision Cone
+    rover.scanAngle += 0.04;
+    const sweepW = 0.45 + Math.sin(rover.scanAngle) * 0.15;
+    const coneGrad = ctx.createRadialGradient(0, 0, 2, 0, 0, 36);
+    coneGrad.addColorStop(0, 'rgba(0, 242, 254, 0.6)');
+    coneGrad.addColorStop(0.7, 'rgba(0, 242, 254, 0.15)');
+    coneGrad.addColorStop(1, 'transparent');
+
+    ctx.fillStyle = coneGrad;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.arc(0, 0, 36, -sweepW, sweepW);
+    ctx.closePath();
+    ctx.fill();
+
+    // Rover 6-wheel Rocker-Bogie Chassis
+    // Wheels
+    ctx.fillStyle = '#334155';
+    ctx.fillRect(-8, -9, 4, 3); // Left wheels
+    ctx.fillRect(-1, -9, 4, 3);
+    ctx.fillRect(6, -9, 4, 3);
+    ctx.fillRect(-8, 6, 4, 3); // Right wheels
+    ctx.fillRect(-1, 6, 4, 3);
+    ctx.fillRect(6, 6, 4, 3);
+
+    // Gold-foiled main rover chassis
+    ctx.fillStyle = '#eab308';
+    ctx.fillRect(-6, -6, 14, 12);
+
+    // Solar Panel Grid texture
+    ctx.fillStyle = '#1e3a8a';
+    ctx.fillRect(-4, -4, 10, 8);
+    ctx.strokeStyle = '#60a5fa';
+    ctx.lineWidth = 0.5;
+    ctx.strokeRect(-4, -4, 10, 8);
+
+    // Mast / Camera
+    ctx.fillStyle = '#f8fafc';
+    ctx.beginPath();
+    ctx.arc(4, 0, 2.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  // --- Rover Autonomous Motion & Simulation Loop ---
+  let simAnimId = null;
+
+  function updateSimulation() {
+    if (!rover.active) return;
+
+    if (rover.pathIdx >= optimalPath.length) {
+      // Reached Goal!
+      rover.active = false;
+      const statusBadge = document.getElementById('pfLiveStatus');
+      const simBtn = document.getElementById('pfSimulateBtn');
+      if (statusBadge) {
+        statusBadge.textContent = 'TARGET REACHED: ICE CORE SECURED';
+        statusBadge.classList.remove('running');
+        statusBadge.style.color = '#38ef7d';
+        statusBadge.style.borderColor = '#38ef7d';
+      }
+      if (simBtn) {
+        simBtn.innerHTML = '<span>✔ Simulation Complete (Reset Rover)</span>';
+      }
+      logConsole("🎯 TOUCHDOWN AT ICE ANOMALY! Cryogenic volatile sample extracted successfully.", "info");
+      logConsole("📊 Telemetry locked: Slope within safety envelope. Battery margin preserved.", "info");
+      return;
+    }
+
+    const targetNode = optimalPath[rover.pathIdx];
+    const targetPxX = targetNode.x * CELL_W + CELL_W / 2;
+    const targetPxY = targetNode.y * CELL_H + CELL_H / 2;
+
+    const dx = targetPxX - rover.x;
+    const dy = targetPxY - rover.y;
+    const distToNode = Math.hypot(dx, dy);
+
+    // Turn toward waypoint
+    const targetAngle = Math.atan2(dy, dx);
+    let diff = targetAngle - rover.heading;
+    while (diff < -Math.PI) diff += Math.PI * 2;
+    while (diff > Math.PI) diff -= Math.PI * 2;
+    rover.heading += diff * 0.18;
+
+    // Advance rover
+    if (distToNode < rover.speed * 1.5) {
+      rover.x = targetPxX;
+      rover.y = targetPxY;
+      rover.pathIdx++;
+
+      // Record tread mark
+      rover.treads.push({ x: rover.x, y: rover.y });
+      if (rover.treads.length > 250) rover.treads.shift();
+
+      // Check current cell properties for live telemetry
+      const curCell = terrainGrid[targetNode.y]?.[targetNode.x];
+      if (curCell) {
+        if (curCell.slope > rover.maxSlope) rover.maxSlope = curCell.slope;
+
+        // Battery logic: slope climb drains faster; in sunlight recharges slightly
+        if (curCell.isCold) {
+          rover.battery -= 0.28;
+          rover.cryoSec += 1.2;
+        } else {
+          rover.battery -= 0.08; // Normal solar daylight drain
+        }
+
+        // Live slope warning
+        if (curCell.slope > 16) {
+          logConsole(`[CAUTION] Steep incline ${curCell.slope}° detected. Active differential drive torque boost applied.`, "warn");
+        }
+      }
+
+      // Update HUD elements
+      const progress = Math.min(100, Math.round((rover.pathIdx / optimalPath.length) * 100));
+      const progBar = document.getElementById('pfProgressBar');
+      const progVal = document.getElementById('pfProgressVal');
+      const metricBattery = document.getElementById('pfMetricBattery');
+      const metricCryo = document.getElementById('pfMetricCryo');
+
+      if (progBar) progBar.style.width = `${progress}%`;
+      if (progVal) progVal.textContent = `${progress}%`;
+      if (metricBattery) {
+        metricBattery.textContent = `${Math.max(12, rover.battery).toFixed(1)} Wh`;
+      }
+      if (metricCryo) {
+        const mins = Math.floor(rover.cryoSec / 60);
+        const secs = Math.floor(rover.cryoSec % 60);
+        metricCryo.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')} min`;
+      }
+    } else {
+      rover.x += Math.cos(rover.heading) * rover.speed;
+      rover.y += Math.sin(rover.heading) * rover.speed;
+    }
+
+    simAnimId = requestAnimationFrame(updateSimulation);
+  }
+
+  // --- Exposed Global Action Functions ---
+  window.loadPfPreset = function(presetKey) {
+    activePreset = presetKey;
+    document.querySelectorAll('.pf-presets-group .pf-chip-btn').forEach(btn => btn.classList.remove('active'));
+    const btn = document.getElementById('preset' + presetKey.charAt(0).toUpperCase() + presetKey.slice(1));
+    if (btn) btn.classList.add('active');
+
+    rover.active = false;
+    if (simAnimId) cancelAnimationFrame(simAnimId);
+
+    generateTerrain(presetKey);
+    computeAStarPath();
+    resetPfRover();
+
+    logConsole(`Mission Scenario Loaded: ${presetKey.toUpperCase()} Crater Exploration Profile.`);
+  };
+
+  window.togglePfLayer = function(layerKey) {
+    activeLayers[layerKey] = !activeLayers[layerKey];
+    const btn = document.getElementById('toggle' + layerKey.charAt(0).toUpperCase() + layerKey.slice(1) + 'Layer');
+    if (btn) {
+      btn.classList.toggle('active', activeLayers[layerKey]);
+      const label = layerKey === 'slope' ? 'Slope Heatmap' :
+                    layerKey === 'boulder' ? 'Boulders' :
+                    layerKey === 'cold' ? '<40K Cold-Trap' : 'A* Vector Path';
+      btn.textContent = `${btn.textContent.split(':')[0]}: ${activeLayers[layerKey] ? 'ON' : 'OFF'}`;
+    }
+  };
+
+  window.setPfToolMode = function(mode) {
+    toolMode = (toolMode === mode) ? 'none' : mode;
+    document.querySelectorAll('.pf-tool-btn').forEach(b => b.classList.remove('active'));
+    if (toolMode !== 'none') {
+      const activeBtn = document.getElementById('tool' + mode.charAt(0).toUpperCase() + mode.slice(1));
+      if (activeBtn) activeBtn.classList.add('active');
+      logConsole(`Tool activated: Click on terrain to ${mode === 'start' ? 'place Lander Site' : mode === 'goal' ? 'place Ice Target' : 'place Boulder Hazard'}.`);
+    }
+  };
+
+  window.clearCustomHazards = function() {
+    customBoulders = [];
+    computeAStarPath();
+    resetPfRover();
+    logConsole("Custom user-placed boulder hazards cleared. Path recalculated.");
+  };
+
+  window.generateRandomBoulders = function() {
+    customBoulders = [];
+    for (let i = 0; i < 5; i++) {
+      const rx = Math.floor(Math.random() * (GRID_W - 14)) + 7;
+      const ry = Math.floor(Math.random() * (GRID_H - 14)) + 7;
+      customBoulders.push({ x: rx, y: ry, r: 2.2 });
+    }
+    computeAStarPath();
+    resetPfRover();
+    logConsole("Spawned 5 dynamic surface rock hazards. Real-time A* avoidance vector generated!", "warn");
+  };
+
+  window.resetPfRover = function() {
+    rover.active = false;
+    if (simAnimId) cancelAnimationFrame(simAnimId);
+    rover.x = startNode.x * CELL_W + CELL_W / 2;
+    rover.y = startNode.y * CELL_H + CELL_H / 2;
+    rover.heading = 0;
+    rover.pathIdx = 0;
+    rover.treads = [];
+    rover.battery = 100.0;
+    rover.maxSlope = 0;
+    rover.cryoSec = 0;
+
+    const progBar = document.getElementById('pfProgressBar');
+    const progVal = document.getElementById('pfProgressVal');
+    const statusBadge = document.getElementById('pfLiveStatus');
+    const simBtn = document.getElementById('pfSimulateBtn');
+
+    if (progBar) progBar.style.width = '0%';
+    if (progVal) progVal.textContent = '0%';
+    if (statusBadge) {
+      statusBadge.textContent = 'READY FOR TRAVERSE';
+      statusBadge.classList.remove('running');
+      statusBadge.style.color = '#38ef7d';
+      statusBadge.style.borderColor = '#38ef7d';
+    }
+    if (simBtn) {
+      simBtn.innerHTML = '<span>▶ Run Autonomous Traverse Simulation</span>';
+    }
+  };
+
+  window.togglePfSimulation = function() {
+    if (rover.active) {
+      // Pause
+      rover.active = false;
+      if (simAnimId) cancelAnimationFrame(simAnimId);
+      const simBtn = document.getElementById('pfSimulateBtn');
+      if (simBtn) simBtn.innerHTML = '<span>▶ Resume Autonomous Traverse</span>';
+      logConsole("Simulation paused by Mission Flight Director.");
+    } else {
+      // Start or Resume
+      if (rover.pathIdx >= optimalPath.length) {
+        resetPfRover();
+      }
+      rover.active = true;
+      const statusBadge = document.getElementById('pfLiveStatus');
+      const simBtn = document.getElementById('pfSimulateBtn');
+      if (statusBadge) {
+        statusBadge.textContent = 'AUTONOMOUS DRIVE ENGAGED';
+        statusBadge.classList.add('running');
+      }
+      if (simBtn) {
+        simBtn.innerHTML = '<span>⏸ Pause Simulation</span>';
+      }
+      logConsole("▶ AUTONOMOUS TRAVERSE INITIATED: Pragyan/LUPEX rover executing real-time obstacle avoidance.", "info");
+      updateSimulation();
+    }
+  };
+
+  window.exportPfManifest = function() {
+    const manifest = {
+      mission: "ISRO LUPEX / Chandrayaan-4 Autonomous Rover Traverse Protocol",
+      scenario: activePreset,
+      coordinate_frame: "Lunar Polar Stereographic (70°S - 90°S)",
+      timestamp: new Date().toISOString(),
+      lander_coordinates: { grid_x: startNode.x, grid_y: startNode.y },
+      target_coordinates: { grid_x: goalNode.x, grid_y: goalNode.y },
+      total_waypoints: optimalPath.length,
+      estimated_traverse_distance_km: (optimalPath.length * 0.025).toFixed(2),
+      max_slope_envelope_deg: document.getElementById('pfMetricSlope')?.textContent || "12.4°",
+      energy_budget_wh: document.getElementById('pfMetricBattery')?.textContent || "88.5 Wh",
+      ice_core_confidence: document.getElementById('pfMetricIce')?.textContent || "94.8%",
+      trajectory_waypoints: optimalPath.map((pt, i) => ({
+        index: i,
+        grid_x: pt.x,
+        grid_y: pt.y,
+        elevation_m: terrainGrid[pt.y]?.[pt.x]?.elevation ?? -3500,
+        slope_deg: terrainGrid[pt.y]?.[pt.x]?.slope ?? 8,
+        is_cryogenic_zone: terrainGrid[pt.y]?.[pt.x]?.isCold ?? false
+      }))
+    };
+
+    const jsonBlob = new Blob([JSON.stringify(manifest, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(jsonBlob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `lunar_traverse_manifest_${activePreset}_${Date.now()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    logConsole("📋 Mission Waypoint Manifest exported as JSON file.", "info");
+  };
+
+  // --- Interactive Canvas Mouse Listeners ---
+  canvas.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const cx = Math.floor((e.clientX - rect.left) * scaleX / CELL_W);
+    const cy = Math.floor((e.clientY - rect.top) * scaleY / CELL_H);
+
+    if (cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H) {
+      const cell = terrainGrid[cy]?.[cx];
+      if (cell) {
+        const statsEl = document.getElementById('pfCursorStats');
+        const safety = cell.slope >= 22 ? 'DANGER (ROLLOVER RISK)' : (cell.slope >= 14 ? 'CAUTION' : 'SAFE');
+        const zone = cell.isCold ? 'CRYOGENIC COLD-TRAP (<40K)' : 'SUNLIT RIM PLATEAU';
+        if (statsEl) {
+          statsEl.textContent = `CURSOR: (X:${cx}, Y:${cy}) | ELEV:${Math.round(cell.elevation)}m | SLOPE:${cell.slope}° [${safety}] | ${zone}`;
+        }
+      }
+    }
+  });
+
+  canvas.addEventListener('click', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const cx = Math.floor((e.clientX - rect.left) * scaleX / CELL_W);
+    const cy = Math.floor((e.clientY - rect.top) * scaleY / CELL_H);
+
+    if (cx < 1 || cx >= GRID_W - 1 || cy < 1 || cy >= GRID_H - 1) return;
+
+    if (toolMode === 'start') {
+      startNode = { x: cx, y: cy };
+      resetPfRover();
+      computeAStarPath();
+      logConsole(`Touchdown Lander relocated to (X:${cx}, Y:${cy}).`);
+      setPfToolMode('none');
+    } else if (toolMode === 'goal') {
+      goalNode = { x: cx, y: cy };
+      resetPfRover();
+      computeAStarPath();
+      logConsole(`Scientific Ice Anomaly relocated to (X:${cx}, Y:${cy}).`);
+      setPfToolMode('none');
+    } else if (toolMode === 'hazard') {
+      customBoulders.push({ x: cx, y: cy, r: 2.2 });
+      computeAStarPath();
+      resetPfRover();
+      logConsole(`Boulder Hazard dropped at (X:${cx}, Y:${cy}). Real-time path recomputed!`, "warn");
+    } else {
+      // Default click without tool: move goal
+      goalNode = { x: cx, y: cy };
+      resetPfRover();
+      computeAStarPath();
+      logConsole(`Ice Target updated to (X:${cx}, Y:${cy}). Optimal descent corridor solved.`);
+    }
+  });
+
+  // Initialize First Preset & Start Render Loop
+  generateTerrain('shackleton');
+  computeAStarPath();
+  resetPfRover();
+  requestAnimationFrame(render);
+})();
 
 /* ==========================================================
    INTERACTIVE DEEP-SPACE STARFIELD & METEOR CANVAS ENGINE

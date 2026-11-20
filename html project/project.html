@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-spin="godi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE GODI EXPRESS (AAJ TAK EDITION) — Editorial Workflow & Live Broadcast Suite</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- HLS.js for Real Live Indian TV News Broadcast Streaming (Aaj Tak HD, India Today, ABP, NDTV) -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+
+  <!-- AAJ TAK / REPUBLIC STYLE SIREN FLASH OVERLAY -->
+  <div class="siren-flash-overlay" id="sirenOverlay">
+    <div class="siren-banner">
+      <span class="siren-icon">🚨</span>
+      <span class="siren-text" id="sirenBannerText">MEGA BREAKING • 140dB MASTERSTROKE ALERT • WORLD STUNNED BY NOIDA STUDIO!</span>
+      <span class="siren-icon">🚨</span>
+    </div>
+  </div>
+
+  <!-- TOP BREAKING NEWS WIRE TICKER (AAJ TAK RED & YELLOW FLASH STYLE) -->
+  <div class="wire-bar">
+    <div class="wire-badge">
+      <span class="pulse-dot"></span>
+      <span id="wireBadgeText">GODI WIRE LIVE • SABSE TEZ</span>
+    </div>
+    <div class="wire-marquee-wrap">
+      <div class="wire-marquee" id="wireTickerContent">
+        <!-- Populated dynamically by JS -->
+      </div>
+    </div>
+    <div class="wire-meta">
+      <button class="btn-siren-trigger" onclick="triggerBreakingSiren()" title="Fire Breaking News Siren">
+        🚨 FIRE SIREN
+      </button>
+      <span id="decibelMeter">🔊 STUDIO DB: <strong>148.6 dB</strong></span>
+      <span class="wire-divider">|</span>
+      <span id="pressCountdown">⏳ 9 PM SCREAM LOCK: <strong>02:14:39</strong></span>
+    </div>
+  </div>
+
+  <!-- MAIN APPLICATION SHELL -->
+  <div class="app-shell">
+
+    <!-- LEFT SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="aajtak-logo-box">
+          <span class="aajtak-top">GODI</span>
+          <span class="aajtak-bottom">TAK</span>
+        </div>
+        <div class="brand-titles">
+          <span class="brand-kicker" id="sidebarKicker">NOIDA FILM CITY • SECTOR 16A</span>
+          <h1 class="brand-name" id="sidebarBrandName">THE GODI EXPRESS</h1>
+          <span class="brand-sub" id="sidebarSubtitle">Sabse Tez Spin & Editorial CMS</span>
+        </div>
+      </div>
+
+      <!-- SAVAGE MODE SWITCHER: GODI MODE vs VIVA SERIOUS MODE -->
+      <div class="mode-card">
+        <div class="mode-card-header">
+          <span class="mode-label">EDITORIAL SPIN ENGINE</span>
+          <span class="mode-pill" id="currentModeBadge">🔥 FULL GODI</span>
+        </div>
+        <p class="mode-desc" id="modeDescription">
+          All Indian ground realities are automatically spun into 56-Inch Masterstrokes, Nehru Blame & 148dB Prime-Time Debates.
+        </p>
+        <div class="spin-toggle-group" role="group" aria-label="Editorial Mode Switcher">
+          <button class="spin-btn active" id="btnGodiMode" onclick="setEditorialMode('godi')">
+            🌶️ Full Godi Mode
+          </button>
+          <button class="spin-btn" id="btnJournalismMode" onclick="setEditorialMode('serious')">
+            🎓 Viva / Serious Mode
+          </button>
+        </div>
+      </div>
+
+      <!-- WORKSPACE VIEWS NAVIGATION -->
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">NEWSROOM WORKSPACE</div>
+        <button class="nav-item active" data-view="kanban" onclick="switchView('kanban')">
+          <span class="nav-icon">📋</span>
+          <span class="nav-text" id="navKanbanText">Editorial Pipeline (Kanban)</span>
+          <span class="nav-count" id="navTotalStories">7</span>
+        </button>
+        <button class="nav-item" data-view="tvstudio" onclick="switchView('tvstudio')">
+          <span class="nav-icon">📺</span>
+          <span class="nav-text" id="navTvText">Aaj Tak Live TV & Debate Room</span>
+          <span class="nav-tag live-blink">● LIVE TV</span>
+        </button>
+        <button class="nav-item" data-view="broadsheet" onclick="switchView('broadsheet')">
+          <span class="nav-icon">🗞️</span>
+          <span class="nav-text" id="navBroadsheetText">Front-Page Broadsheet Print</span>
+        </button>
+        <button class="nav-item" data-view="analytics" onclick="switchView('analytics')">
+          <span class="nav-icon">📊</span>
+          <span class="nav-text" id="navAnalyticsText">TRP, Sponsors & Agenda Analytics</span>
+        </button>
+        <button class="nav-item" data-view="roster" onclick="switchView('roster')">
+          <span class="nav-icon">🎙️</span>
+          <span class="nav-text" id="navRosterText">Star Anchors & IT Cell Roster</span>
+        </button>
+      </nav>
+
+      <!-- DESK FILTER QUICK-LINKS -->
+      <div class="sidebar-desks">
+        <div class="nav-section-label" id="deskSectionTitle">INDIAN NEWSROOM BUREAUS</div>
+        <button class="desk-chip active" data-desk="all" onclick="filterByDesk('all')">
+          <span class="desk-dot dot-all"></span> All India Desks
+        </button>
+        <button class="desk-chip" data-desk="masterstroke" onclick="filterByDesk('masterstroke')">
+          <span class="desk-dot dot-gold"></span> <span class="desk-label" data-desk-id="masterstroke">56-Inch Masterstroke Economy</span>
+        </button>
+        <button class="desk-chip" data-desk="whatsapp" onclick="filterByDesk('whatsapp')">
+          <span class="desk-dot dot-green"></span> <span class="desk-label" data-desk-id="whatsapp">WhatsApp DNA & ₹2000 Note Chip</span>
+        </button>
+        <button class="desk-chip" data-desk="nehru" onclick="filterByDesk('nehru')">
+          <span class="desk-dot dot-crimson"></span> <span class="desk-label" data-desk-id="nehru">1947 Nehru Blame & Bulldozer</span>
+        </button>
+        <button class="desk-chip" data-desk="distraction" onclick="filterByDesk('distraction')">
+          <span class="desk-dot dot-purple"></span> <span class="desk-label" data-desk-id="distraction">Seema-Sachin & B-Town Distraction</span>
+        </button>
+      </div>
+
+      <!-- SIDEBAR MINI LIVE AAJ TAK TV MONITOR (ALWAYS VISIBLE!) -->
+      <div class="sidebar-mini-tv">
+        <div class="mini-tv-header">
+          <span><span class="live-red-dot"></span> AAJ TAK 24x7 LIVE FEED</span>
+          <button class="btn-expand-tv" onclick="switchView('tvstudio')">Expand ⤢</button>
+        </div>
+        <div class="mini-tv-screen" onclick="switchView('tvstudio')" title="Click to open Full Live TV Broadcast Studio">
+          <video id="miniLiveVideo" autoplay muted playsinline></video>
+          <div class="mini-tv-overlay">
+            <span class="mini-tv-badge">SABSE TEZ LIVE</span>
+            <span class="mini-tv-Action">Click for Full Studio + Audio 🔊</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT WORKSPACE -->
+    <main class="main-workspace">
+
+      <!-- NEWSPAPER + INDIAN TV MASTHEAD HEADER -->
+      <header class="masthead">
+        <div class="masthead-top-strip">
+          <div class="edition-meta">
+            <span class="meta-badge" id="editionCode">NOIDA FILM CITY EDITION • VOL. #420</span>
+            <span class="meta-sep">•</span>
+            <span id="currentDateDisplay">SATURDAY, OCT 30, 2026</span>
+            <span class="meta-sep">•</span>
+            <span id="weatherQuote">🌤️ Delhi AQI: 495 (Declared Free Lung Pranayama Masterstroke)</span>
+          </div>
+
+          <div class="masthead-actions">
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Search Indian news, Nehru, Bulldozer, Chip..."
+                oninput="handleSearch(this.value)"
+              />
+            </div>
+
+            <button class="btn-theme" id="themeToggleBtn" onclick="toggleTheme()" title="Switch Broadsheet Paper / Prime-Time Dark Mode">
+              <span id="themeIcon">🌙</span>
+              <span id="themeLabel">Studio Dark</span>
+            </button>
+
+            <button class="btn-primary-press" onclick="openPitchModal()">
+              <span>➕</span>
+              <span id="pitchBtnLabel">Forward New Story</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="masthead-centerpiece">
+          <div class="masthead-ornament left-ornament">
+            <div class="ornament-title" id="leftEarTitle">EDITORIAL DHARMA</div>
+            <div class="ornament-body" id="leftEarBody">"Never question the Government; always scream at the Opposition & Nehru!"</div>
+          </div>
+
+          <div class="masthead-title-block">
+            <div class="masthead-live-pill">
+              <span class="live-red-dot"></span>
+              <span id="mastheadLiveTag">SABSE TEZ • VISHWAGURU DANKA EDITION • 148 dB CERTIFIED</span>
+            </div>
+            <h2 class="newspaper-title" id="mainMastheadTitle">The Daily Godi Express</h2>
+            <p class="newspaper-subtitle" id="mainMastheadSub">
+              INDIA'S #1 WHATSAPP UNIVERSITY & NOIDA FILM CITY BROADSHEET WORKFLOW SYSTEM • ZERO REAL ISSUES GUARANTEED
+            </p>
+          </div>
+
+          <div class="masthead-ornament right-ornament">
+            <div class="ornament-title" id="rightEarTitle">PRIME-TIME SPONSORS</div>
+            <div class="ornament-body" id="rightEarBody">Vimal Pan Masala (Bolo Zubaan Kesari) • Strepsils Throat Lozenges</div>
+          </div>
+        </div>
+
+        <!-- KPI STATS RIBBON -->
+        <div class="kpi-ribbon">
+          <div class="kpi-card">
+            <div class="kpi-label" id="kpi1Label">STORIES IN SPIN PIPELINE</div>
+            <div class="kpi-val-row">
+              <span class="kpi-value" id="kpiTotalCount">7</span>
+              <span class="kpi-trend positive" id="kpi1Trend">+4 from Phupha Ji Group</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label" id="kpi2Label">READY FOR 9 PM DANGAL</div>
+            <div class="kpi-val-row">
+              <span class="kpi-value" id="kpiApprovedCount">2</span>
+              <span class="kpi-trend gold" id="kpi2Trend">100% Sponsor Friendly</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label" id="kpi3Label">AVG ANCHOR DECIBEL (DB)</div>
+            <div class="kpi-val-row">
+              <span class="kpi-value" id="kpiDecibelVal">148 dB</span>
+              <span class="kpi-trend crimson" id="kpi3Trend">🔥 Ear-Drum Breaker</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label" id="kpi4Label">REAL INDIAN ISSUES HIDDEN</div>
+            <div class="kpi-val-row">
+              <span class="kpi-value" id="kpiIgnoredVal">4,820</span>
+              <span class="kpi-trend positive" id="kpi4Trend">✓ Paper Leaks Ignored</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- =================================================================
+           VIEW 1: EDITORIAL KANBAN PIPELINE
+           ================================================================= -->
+      <section class="workspace-view active" id="view-kanban">
+
+        <!-- AAJ TAK LIVE BREAKING GRAPHIC STRIP ABOVE KANBAN -->
+        <div class="aajtak-live-strip">
+          <div class="aajtak-strip-left">
+            <span class="flash-tag">🔥 SABSE BADI KHABAR</span>
+            <span class="flash-headline" id="liveFlashHeadline">
+              Noida Studio deploys 4 Bulldozers & 2 Helicopters inside newsroom; Tonight at 9 PM: "Did Nehru Cause Yesterday's Traffic Jam in Bengaluru?"
+            </span>
+          </div>
+          <div class="aajtak-strip-actions">
+            <button class="btn-mini-tv" onclick="switchView('tvstudio')">
+              📺 Watch Live Aaj Tak TV
+            </button>
+            <button class="btn-mini-tv gold" onclick="cycleFlashHeadline()">
+              ⚡ Next Breaking Flash
+            </button>
+          </div>
+        </div>
+
+        <div class="view-toolbar">
+          <div class="view-toolbar-left">
+            <h3 class="section-heading" id="kanbanHeading">Editorial Spin & Clearance Pipeline (5-Stage Newsroom Workflow)</h3>
+            <span class="section-sub" id="kanbanSubheading">
+              Click any story card to open the Sub-Editor Studio & Fact-Tampering Checklist, or drag-and-drop across stages.
+            </span>
+          </div>
+          <div class="view-toolbar-right">
+            <select id="priorityFilter" class="toolbar-select" onchange="applyFilters()">
+              <option value="all">All Priority Levels</option>
+              <option value="BREAKING">🚨 Breaking 140dB</option>
+              <option value="MASTERSTROKE">👑 56-Inch Masterstroke</option>
+              <option value="DISTRACTION">🎪 National Distraction</option>
+              <option value="DANGER">⚠️ Real Journalism (Danger!)</option>
+            </select>
+            <button class="btn-outline" onclick="shuffleHeadlineSpin()">
+              🌶️ Inject Extra Masala Titles
+            </button>
+          </div>
+        </div>
+
+        <!-- 5-STAGE KANBAN BOARD -->
+        <div class="kanban-board" id="kanbanBoard">
+          <!-- Populated dynamically via project.js -->
+        </div>
+      </section>
+
+      <!-- =================================================================
+           VIEW 2: REAL AAJ TAK LIVE TV VIDEO STREAM + 6-WINDOW DEBATE STUDIO
+           ================================================================= -->
+      <section class="workspace-view" id="view-tvstudio">
+        <div class="view-toolbar">
+          <div class="view-toolbar-left">
+            <h3 class="section-heading">📺 Live Indian News Broadcast Control Room (Real 24x7 Live TV + Debate Simulator)</h3>
+            <span class="section-sub">
+              Watch the real live television stream of Aaj Tak HD / India Today / ABP / NDTV alongside the interactive 9 PM Shouting Panel!
+            </span>
+          </div>
+          <div class="view-toolbar-right">
+            <label class="toolbar-label" for="liveChannelSelect">Switch Live Channel:</label>
+            <select id="liveChannelSelect" class="toolbar-select" onchange="changeLiveTvChannel(this.value)">
+              <option value="aajtak">🔴 Aaj Tak HD (Live TV Stream)</option>
+              <option value="indiatoday">🟠 India Today Live (English TV)</option>
+              <option value="abp">🟡 ABP News Live (Hindi TV)</option>
+              <option value="ndtv">🔵 NDTV 24x7 Live</option>
+              <option value="yt_aajtak">▶️ YouTube Official Live Embed</option>
+            </select>
+            <button class="btn-primary-press" onclick="triggerBreakingSiren()">
+              🚨 Fire Siren Overlay
+            </button>
+            <button class="btn-outline" onclick="muteAllOpposition()">
+              🔇 Mute Opposition Mic
+            </button>
+          </div>
+        </div>
+
+        <!-- INDIAN TV BROADCAST MONITOR SCREEN -->
+        <div class="tv-broadcast-frame" id="tvBroadcastFrame">
+          <!-- Top TV Bug & Live Badges -->
+          <div class="tv-top-bar">
+            <div class="tv-show-badge">
+              <span class="blinking-dot"></span>
+              <span id="activeChannelTitle">AAJ TAK HD • LIVE MCR FEED (SABSE TEZ)</span>
+            </div>
+            <div class="tv-trp-meter">
+              <span>⚡ STUDIO DECIBEL: <strong id="tvLiveDb">148.2 dB</strong></span>
+              <span>•</span>
+              <span>🔥 OUTRAGE METER: <strong>MAXIMUM</strong></span>
+            </div>
+            <div class="tv-channel-logo">
+              <div class="tv-logo-top">AAJ</div>
+              <div class="tv-logo-bottom">GODI</div>
+            </div>
+          </div>
+
+          <!-- Split Broadcast Layout: Left Real Live TV Video Player + Right 6-Window Debate Grid -->
+          <div class="tv-studio-split">
+
+            <!-- LEFT: REAL LIVE TV STREAM PLAYER WITH L-BAND OVERLAY -->
+            <div class="tv-live-player-box">
+              <div class="live-video-wrapper" id="liveVideoWrapper">
+                <video id="mainLiveVideo" controls autoplay muted playsinline></video>
+                <iframe
+                  id="ytFallbackIframe"
+                  style="display:none; width:100%; height:100%; border:0;"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+
+              <div class="live-player-controls">
+                <div class="player-status">
+                  <span class="live-red-dot"></span>
+                  <span id="streamStatusText">Streaming Real Live Broadcast (Click Unmute on player for audio)</span>
+                </div>
+                <div class="player-btn-group">
+                  <button class="btn-mini-tv gold" onclick="unmuteLiveTv()">🔊 Unmute Live TV Audio</button>
+                  <button class="btn-mini-tv" onclick="increaseAnchorVolume()">📢 Boost Studio DB (+15dB)</button>
+                </div>
+              </div>
+
+              <!-- Classic Indian TV L-Band Ad & Masterstroke Strip -->
+              <div class="lband-horizontal-strip">
+                <div class="lband-h-item">
+                  <span class="lband-kicker">MASTERSTROKE #1</span>
+                  <span>Tomato at ₹160/kg eliminates kidney stones across India!</span>
+                </div>
+                <div class="lband-h-item">
+                  <span class="lband-kicker">NEIGHBOUR PANIC</span>
+                  <span>Chandrayaan rover triggers flour shortage in Pakistan!</span>
+                </div>
+                <div class="lband-h-item">
+                  <span class="lband-kicker">SPONSORED BY</span>
+                  <strong>Bulldozer Cement & Baba Elaichi</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: 6-WINDOW SHOUTING DEBATE SIMULATOR -->
+            <div class="tv-debate-side">
+              <div class="debate-side-header">
+                <span>🎙️ 9 PM MULTI-WINDOW SHOUTING PANEL (DANGAL)</span>
+                <span class="debate-sub">Click "Mute Mic" on any panelist</span>
+              </div>
+              <div class="tv-debate-grid" id="tvDebateGrid">
+                <!-- Populated dynamically by JS -->
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Aaj Tak Style 3-Layer Animated Breaking Ticker -->
+          <div class="tv-lower-third">
+            <div class="tv-breaking-plate">
+              <div class="plate-left">BREAKING NEWS</div>
+              <div class="plate-center" id="tvMainBreakingText">
+                EXCLUSIVE DNA TEST: Does hot Samosa & Jalebi contain a 5G GPS Nano-Chip? Live investigation from Noida Film City!
+              </div>
+              <div class="plate-right">SABSE TEZ</div>
+            </div>
+            <div class="tv-yellow-scroll">
+              <div class="tv-yellow-marquee">
+                <span>🔥 DEBATE QUESTION #1: When it rained heavily in 1952, why didn't Nehru distribute free umbrellas?</span>
+                <span>•</span>
+                <span>🚨 DEBATE QUESTION #2: Do Trump and Putin also read Phupha Ji's WhatsApp forwards every morning?</span>
+                <span>•</span>
+                <span>📢 DEBATE QUESTION #3: Why Petrol at ₹110/L is a 56-Inch Masterstroke for youth cycling stamina!</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           VIEW 3: BROADSHEET FRONT-PAGE SIMULATOR
+           ================================================================= -->
+      <section class="workspace-view" id="view-broadsheet">
+        <div class="view-toolbar">
+          <div class="view-toolbar-left">
+            <h3 class="section-heading" id="broadsheetHeading">🗞️ Tomorrow Morning Broadsheet Print Preview (Dummy Front Page)</h3>
+            <span class="section-sub" id="broadsheetSubheading">
+              Stories marked "Ready for Press" automatically flow into the newspaper front-page column grid below.
+            </span>
+          </div>
+          <div class="view-toolbar-right">
+            <label class="toolbar-label" for="leadStorySelector">Lead Banner Story:</label>
+            <select id="leadStorySelector" class="toolbar-select" onchange="updateFrontPageLead(this.value)">
+              <!-- Populated dynamically -->
+            </select>
+            <button class="btn-primary-press" onclick="triggerPrintToast()">
+              🖨️ Dispatch 50 Lakh Copies to Press
+            </button>
+          </div>
+        </div>
+
+        <!-- PHYSICAL NEWSPAPER SHEET CONTAINER -->
+        <div class="broadsheet-paper-wrap">
+          <article class="broadsheet-paper" id="broadsheetPaper">
+            <!-- Rendered dynamically by JS -->
+          </article>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           VIEW 4: NEWSROOM TRP, SPONSOR & AGENDA ANALYTICS
+           ================================================================= -->
+      <section class="workspace-view" id="view-analytics">
+        <div class="view-toolbar">
+          <div class="view-toolbar-left">
+            <h3 class="section-heading">📊 Indian Newsroom TRP, Propaganda & Sponsor Analytics</h3>
+            <span class="section-sub">
+              Real-time breakdown of how air-time and newspaper column inches are allocated across topics.
+            </span>
+          </div>
+        </div>
+
+        <div class="analytics-grid" id="analyticsGrid">
+          <!-- Populated dynamically by JS -->
+        </div>
+      </section>
+
+      <!-- =================================================================
+           VIEW 5: NEWSROOM ROSTER & DEBATE PANEL
+           ================================================================= -->
+      <section class="workspace-view" id="view-roster">
+        <div class="view-toolbar">
+          <div class="view-toolbar-left">
+            <h3 class="section-heading" id="rosterHeading">🎙️ Star Anchors, Bulldozer Reporters & WhatsApp Research Desk</h3>
+            <span class="section-sub" id="rosterSubheading">
+              Live monitoring of star anchors, decibel capacity, and sub-editor propaganda compliance.
+            </span>
+          </div>
+        </div>
+
+        <div class="roster-grid" id="rosterGrid">
+          <!-- Populated dynamically by JS -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- SLIDE-OVER DRAWER: SUB-EDITOR STUDIO & FACT-TAMPERING CHECKLIST -->
+  <div class="drawer-backdrop" id="studioDrawerBackdrop" onclick="closeStoryStudio()"></div>
+  <aside class="studio-drawer" id="studioDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-header-left">
+        <span class="drawer-id" id="drawerStoryId">STORY #GE-101</span>
+        <span class="drawer-stage-badge" id="drawerStageBadge">STAGE</span>
+      </div>
+      <div class="drawer-header-actions">
+        <button class="btn-stage-advance" id="drawerAdvanceBtn" onclick="advanceActiveStoryStage()">
+          Advance to Next Stage →
+        </button>
+        <button class="btn-close" onclick="closeStoryStudio()" title="Close Studio">✕</button>
+      </div>
+    </div>
+
+    <div class="drawer-body">
+      <!-- Left Column: Manuscript Editor -->
+      <div class="studio-manuscript">
+        <div class="form-group">
+          <label class="studio-label" id="lblHeadline">HEADLINE (CLICK TO EDIT LIVE)</label>
+          <textarea id="studioHeadlineInput" class="studio-headline-editor" rows="2" oninput="saveActiveStoryEdits()"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="studio-label" id="lblDeck">STANDFIRST / SUB-HEADLINE SPIN</label>
+          <textarea id="studioDeckInput" class="studio-deck-editor" rows="2" oninput="saveActiveStoryEdits()"></textarea>
+        </div>
+
+        <div class="manuscript-meta-strip">
+          <div class="meta-item">
+            <span class="meta-key">CORRESPONDENT</span>
+            <strong class="meta-val" id="studioReporter">Arnab Goswami (150dB)</strong>
+          </div>
+          <div class="meta-item">
+            <span class="meta-key">BUREAU DESK</span>
+            <strong class="meta-val" id="studioDesk">56-Inch Masterstroke</strong>
+          </div>
+          <div class="meta-item">
+            <span class="meta-key">WORD COUNT</span>
+            <strong class="meta-val" id="studioWordCount">640 / 650 words</strong>
+          </div>
+          <div class="meta-item">
+            <span class="meta-key" id="studioMetricKey">SCREAM SCORE</span>
+            <strong class="meta-val crimson-text" id="studioScreamScore">149 dB (MAX TRP)</strong>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="studio-label-row">
+            <label class="studio-label">ARTICLE MANUSCRIPT BODY</label>
+            <button class="btn-mini-spin" onclick="injectMasalaParagraph()">🌶️ Inject Desi Godi Masala Paragraph</button>
+          </div>
+          <textarea id="studioBodyInput" class="studio-body-editor" rows="10" oninput="saveActiveStoryEdits()"></textarea>
+        </div>
+      </div>
+
+      <!-- Right Column: Clearance Checklist & Editorial Notes -->
+      <div class="studio-sidebar">
+        <div class="checklist-panel">
+          <h4 class="panel-title" id="checklistPanelTitle">🛡️ Godi Editorial Clearance Checklist</h4>
+          <p class="panel-subtitle" id="checklistPanelSub">Mandatory checks before 9 PM Prime-Time & Morning Press Lock:</p>
+          <div class="checklist-items" id="studioChecklist">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <div class="comments-panel">
+          <h4 class="panel-title" id="commentsPanelTitle">💬 Chief Editor & IT Cell Desk Notes</h4>
+          <div class="comments-feed" id="studioCommentsFeed">
+            <!-- Rendered by JS -->
+          </div>
+          <div class="comment-input-row">
+            <input type="text" id="newCommentInput" placeholder="Add instruction (e.g. 'Blame Nehru in para 3')..." onkeydown="if(event.key==='Enter') addStudioComment()" />
+            <button class="btn-send-comment" onclick="addStudioComment()">Send</button>
+          </div>
+        </div>
+
+        <div class="danger-zone-panel">
+          <button class="btn-reject-story" onclick="rejectActiveStory()">
+            🗑️ Trash Story (Contains Real Ground Journalism!)
+          </button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MODAL: PITCH / FORWARD NEW STORY -->
+  <div class="modal-backdrop" id="pitchModalBackdrop" onclick="closePitchModal()">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <span class="modal-kicker" id="modalKicker">WHATSAPP UNIVERSITY & NOIDA DESK INTAKE</span>
+          <h3 class="modal-title" id="modalTitle">Submit New Story to Editorial Pipeline</h3>
+        </div>
+        <button class="btn-close" onclick="closePitchModal()">✕</button>
+      </div>
+
+      <form id="pitchStoryForm" onsubmit="submitNewStory(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="studio-label">SENSATIONAL INDIAN HEADLINE *</label>
+            <input
+              type="text"
+              id="newStoryHeadline"
+              class="modal-input"
+              placeholder="e.g., Why Rupee Falling to 86 Against Dollar Is A 56-Inch Export Masterstroke!"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="studio-label">SUB-HEADLINE / WHATSAPP ANGLE *</label>
+            <input
+              type="text"
+              id="newStoryDeck"
+              class="modal-input"
+              placeholder="e.g., Exclusive study from Phupha Ji's WhatsApp group reveals secret economic formula."
+              required
+            />
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="studio-label">EDITORIAL BUREAU / DESK</label>
+              <select id="newStoryDesk" class="modal-input">
+                <option value="masterstroke">👑 56-Inch Masterstroke Economy</option>
+                <option value="whatsapp">🛸 WhatsApp DNA & ₹2000 Note Chip</option>
+                <option value="nehru">📜 1947 Nehru Blame & Bulldozer</option>
+                <option value="distraction">🎪 Seema-Sachin & B-Town Distraction</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="studio-label">PRIORITY / DECIBEL TAG</label>
+              <select id="newStoryPriority" class="modal-input">
+                <option value="BREAKING">🚨 BREAKING 140dB</option>
+                <option value="MASTERSTROKE">👑 56-INCH MASTERSTROKE</option>
+                <option value="DISTRACTION">🎪 URGENT DISTRACTION</option>
+                <option value="DANGER">⚠️ LOW TRP / REAL ISSUE</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="studio-label">ASSIGNED CORRESPONDENT</label>
+              <input
+                type="text"
+                id="newStoryReporter"
+                class="modal-input"
+                value="Chintu Tyagi (WhatsApp PhD)"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="studio-label">INITIAL WORKFLOW STAGE</label>
+              <select id="newStoryStage" class="modal-input">
+                <option value="pitch">Stage 1: WhatsApp Forward Received</option>
+                <option value="draft">Stage 2: Adding Desi Masala & Spin</option>
+                <option value="review">Stage 3: IT Cell & Script Alignment</option>
+                <option value="legal">Stage 4: Nehru Blame & Bulldozer Check</option>
+                <option value="press">Stage 5: Ready for 9 PM Screaming</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="studio-label">DRAFT MANUSCRIPT / WHATSAPP SOURCE TEXT</label>
+            <textarea
+              id="newStoryBody"
+              class="modal-input"
+              rows="4"
+              placeholder="Paste the WhatsApp forward here. Red arrows, bulldozer graphics, and siren sound effects will be added automatically..."
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-outline" onclick="fillSampleSarcasticPitch()">
+            ⚡ Auto-Fill Hilarious Indian Sample
+          </button>
+          <div class="modal-footer-right">
+            <button type="button" class="btn-outline" onclick="closePitchModal()">Cancel</button>
+            <button type="submit" class="btn-primary-press">🚀 Push to Newsroom Board</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="project.js"></script>
+</body>
+</html>
