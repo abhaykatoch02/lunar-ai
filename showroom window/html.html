@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chaudhary Motors | Premium Pre-Owned Cars Since 1994</title>
-    <meta name="description" content="Chaudhary Motors - Since 1994. Your Trusted Destination for Premium Pre-Owned Cars. 150+ point quality checks, certified excellence, and seamless ownership.">
+    <meta name="description" content="Chaudhary Motors - Since 1994. Your Trusted Destination for Premium Pre-Owned Cars. 150+ point quality inspection, sell your car at best market price, instant doorstep valuation.">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9C2.1 11.1 2 11.5 2 12v4c0 .6.4 1 1 1h2'/><circle cx='7' cy='17' r='2'/><path d='M9 17h6'/><circle cx='17' cy='17' r='2'/></svg>">
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,6 +15,34 @@
     <link rel="stylesheet" href="css.css">
 </head>
 <body>
+
+    <!-- DEALER ADMIN FLOATING COMMAND BAR (Visible ONLY when Showroom Admin is Logged In) -->
+    <div class="dealer-admin-bar" id="dealerAdminBar" style="display: none;">
+        <div class="admin-bar-inner">
+            <div class="admin-status-group">
+                <span class="admin-live-badge"></span>
+                <span class="admin-status-text">DEALER PORTAL ACTIVE &bull; Chaudhary Motors Staff</span>
+            </div>
+            <div class="admin-actions-group">
+                <button class="btn-admin-action" onclick="openAddCarModal()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    <span>Add New Car</span>
+                </button>
+                <button class="btn-admin-action" onclick="openAdminDashboard('inventory')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    <span>Manage Inventory (<span id="adminInvCount">0</span>)</span>
+                </button>
+                <button class="btn-admin-action" onclick="openAdminDashboard('leads')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    <span>Sell Inquiries (<span id="adminLeadsCount">0</span>)</span>
+                </button>
+                <button class="btn-admin-logout" onclick="logoutDealer()" title="Exit Dealer Admin Mode">
+                    <span>Exit Admin</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- TOP NAVIGATION BAR -->
     <header class="navbar" id="navbar">
@@ -28,6 +56,7 @@
                     <li><a href="#home" class="nav-link active">Home</a></li>
                     <li><a href="#about" class="nav-link">About Us</a></li>
                     <li><a href="#showroom" class="nav-link">Our Showroom</a></li>
+                    <li><a href="#sell-car" class="nav-link nav-highlight-link">Sell Your Car <span class="tag-hot">BEST PRICE</span></a></li>
                     <li><a href="#contact" class="nav-link">Contact Us</a></li>
                 </ul>
             </nav>
@@ -40,6 +69,15 @@
                     <span>+91 981XXXXXXX</span>
                 </a>
 
+                <!-- Discreet Staff Portal Access -->
+                <button class="btn-staff-icon" id="staffPortalBtn" onclick="openDealerLoginModal()" title="Showroom Staff Portal (Protected)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <span class="staff-tooltip">Dealer Login</span>
+                </button>
+
                 <!-- Mobile Hamburger Button -->
                 <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Navigation Menu">
                     <span class="bar"></span>
@@ -51,17 +89,18 @@
     </header>
 
     <main>
-        <!-- HERO SECTION -->
+        <!-- HERO SECTION (HD ENHANCED) -->
         <section class="hero-section" id="home">
             <div class="hero-bg-container">
                 <div class="hero-img-layer" id="heroBgImage"></div>
                 <div class="hero-gradient-overlay"></div>
+                <div class="hero-ambient-glow"></div>
             </div>
 
             <div class="container hero-content-wrapper">
                 <div class="hero-slider" id="heroSlider">
                     
-                    <!-- Slide 1 (Matching screenshot exactly) -->
+                    <!-- Slide 1 (Matching UI Screenshot) -->
                     <div class="hero-slide active" data-slide="0">
                         <div class="eyebrow-container">
                             <span class="eyebrow-text">TRUSTED FOR GENERATIONS</span>
@@ -74,11 +113,15 @@
                         <p class="hero-since">Since <span>1994</span></p>
                         <p class="hero-subtext">Your Trusted Destination for Premium Pre-Owned Cars</p>
                         <div class="hero-button-wrap">
-                            <button class="btn-pill-dark" id="heroExploreBtn" onclick="openInventoryModal()">
+                            <button class="btn-pill-dark" onclick="openInventoryModal()">
                                 <span>Explore Our Showroom</span>
                                 <svg class="btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="9 18 15 12 9 6"></polyline>
                                 </svg>
+                            </button>
+                            <button class="btn-pill-gold" onclick="openSellCarModal()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                <span>Sell Your Car &bull; Best Price</span>
                             </button>
                         </div>
                     </div>
@@ -86,21 +129,24 @@
                     <!-- Slide 2 -->
                     <div class="hero-slide" data-slide="1">
                         <div class="eyebrow-container">
-                            <span class="eyebrow-text">UNCOMPROMISING STANDARDS</span>
+                            <span class="eyebrow-text">CERTIFIED HD QUALITY</span>
                             <span class="eyebrow-divider"></span>
                         </div>
                         <h1 class="hero-headline">
-                            Certified<br>
+                            Unmatched<br>
                             Excellence
                         </h1>
                         <p class="hero-since">Over <span>150+</span> Multi-Point Checks</p>
-                        <p class="hero-subtext">Every vehicle is inspected, serviced, and detailed to pristine showroom perfection</p>
+                        <p class="hero-subtext">Every vehicle is handpicked, accident-free, and thoroughly inspected by master technicians</p>
                         <div class="hero-button-wrap">
                             <button class="btn-pill-dark" onclick="openStoryModal()">
                                 <span>Our Quality Standards</span>
                                 <svg class="btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="9 18 15 12 9 6"></polyline>
                                 </svg>
+                            </button>
+                            <button class="btn-pill-gold" onclick="openSellCarModal()">
+                                <span>Instant Car Valuation</span>
                             </button>
                         </div>
                     </div>
@@ -116,13 +162,16 @@
                             In Peace
                         </h1>
                         <p class="hero-since">Hassle-Free <span>RC & Finance</span></p>
-                        <p class="hero-subtext">On-the-spot vehicle exchange valuations, instant loans and guaranteed buyback</p>
+                        <p class="hero-subtext">On-the-spot vehicle exchange valuations, instant loan sanctions, and verified service histories</p>
                         <div class="hero-button-wrap">
                             <button class="btn-pill-dark" onclick="openContactModal('Test Drive & Finance Inquiry')">
                                 <span>Book a Test Drive</span>
                                 <svg class="btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="9 18 15 12 9 6"></polyline>
                                 </svg>
+                            </button>
+                            <button class="btn-pill-gold" onclick="openSellCarModal()">
+                                <span>Get Best Quote For Your Car</span>
                             </button>
                         </div>
                     </div>
@@ -194,14 +243,13 @@
 
                 <!-- Right image column -->
                 <div class="about-visual-col">
-                    <div class="about-card-frame" onclick="openLightbox(1)" title="Click to enlarge view">
+                    <div class="about-card-frame" onclick="openLightbox(1)" title="Click to view full HD showroom">
                         <img src="images/about_showroom.jpg" alt="Chaudhary Motors Indoor Showroom" class="about-main-img" loading="lazy">
-                        <div class="about-card-glow"></div>
                         <div class="about-badge-tag">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                             </svg>
-                            <span>Verified Facility</span>
+                            <span>Verified Facility &bull; 1080p HD</span>
                         </div>
                     </div>
                 </div>
@@ -224,6 +272,12 @@
                     </div>
 
                     <div class="showroom-cta-group">
+                        <!-- Dealer-only Add Car button visible when admin is logged in -->
+                        <button class="btn-admin-add-inline" id="dealerAddBtnInline" style="display: none;" onclick="openAddCarModal()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            <span>+ Add Car to Showroom</span>
+                        </button>
+
                         <button class="btn-link-arrow" id="visitShowroomAction" onclick="openVisitModal()">
                             <span>Visit Our Showroom</span>
                             <svg class="arrow-forward-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -272,17 +326,185 @@
 
                 </div>
 
-                <!-- Quick Inventory Discovery Strip -->
-                <div class="inventory-banner-strip">
-                    <div class="inventory-status-chip">
-                        <span class="live-status-dot"></span>
-                        <span>40+ Verified Vehicles In Showroom Available Today</span>
+                <!-- DYNAMIC LIVE CAR INVENTORY CONTAINER (With Showroom Admin Controls) -->
+                <div class="showroom-live-inventory" id="liveInventorySection">
+                    <div class="inventory-section-header">
+                        <div class="inv-head-left">
+                            <h3 class="inv-subheading">Current Showroom Vehicles (<span id="totalCarsCount">0</span>)</h3>
+                            <p class="inv-subdesc">All vehicles inspected, certified, and available for immediate inspection.</p>
+                        </div>
+                        <div class="inv-head-right">
+                            <div class="filter-pills-wrap" id="inventoryFilterTabs">
+                                <button class="inv-filter-pill active" data-filter="all">All Vehicles</button>
+                                <button class="inv-filter-pill" data-filter="suv">SUVs</button>
+                                <button class="inv-filter-pill" data-filter="4x4">4x4 Off-Road</button>
+                                <button class="inv-filter-pill" data-filter="luxury">Luxury</button>
+                            </div>
+                        </div>
                     </div>
-                    <button class="btn-browse-inv" onclick="openInventoryModal()">
-                        Browse Inventory &rarr;
-                    </button>
+
+                    <!-- Grid of Cars (Populated dynamically via JavaScript) -->
+                    <div class="dynamic-car-grid" id="showroomCarGrid">
+                        <!-- Rendered by JS from inventory store -->
+                    </div>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- ==================== SELL YOUR CAR SECTION (NEW CUSTOMER FEATURE) ==================== -->
+        <section class="sell-car-section" id="sell-car">
+            <div class="container">
+                <div class="sell-car-box">
+                    <div class="sell-car-layout">
+                        <!-- Left explanation & trust points -->
+                        <div class="sell-car-info">
+                            <div class="eyebrow-container">
+                                <span class="eyebrow-text">SELL YOUR CAR</span>
+                                <span class="eyebrow-divider"></span>
+                            </div>
+                            <h2 class="sell-title">
+                                Get the Best Price for Your Car<br>
+                                <span class="gold-gradient-text">Any Brand &bull; Guaranteed Offer</span>
+                            </h2>
+                            <p class="sell-desc">
+                                Looking to sell or upgrade? Chaudhary Motors buys cars of <strong>all brands</strong> with 100% transparency, instant payment, and doorstep evaluation.
+                            </p>
+
+                            <div class="sell-perks-list">
+                                <div class="sell-perk-item">
+                                    <div class="perk-icon-circle">💰</div>
+                                    <div>
+                                        <strong>Highest Market Valuation</strong>
+                                        <p>We beat aggregator estimates by up to ₹ 50,000 with our direct showroom buyer network.</p>
+                                    </div>
+                                </div>
+                                <div class="sell-perk-item">
+                                    <div class="perk-icon-circle">⚡</div>
+                                    <div>
+                                        <strong>Instant Same-Day Payment</strong>
+                                        <p>Direct bank transfer credited immediately before vehicle handover.</p>
+                                    </div>
+                                </div>
+                                <div class="sell-perk-item">
+                                    <div class="perk-icon-circle">📜</div>
+                                    <div>
+                                        <strong>Free & Guaranteed RC Transfer</strong>
+                                        <p>Complete legal indemnity paperwork and safe RC transfer without any hassle.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right interactive valuation & application widget -->
+                        <div class="sell-car-widget">
+                            <div class="widget-header">
+                                <span class="widget-tag">FREE INSTANT ESTIMATE</span>
+                                <h3>Calculate Your Car's Value</h3>
+                            </div>
+
+                            <form id="instantValuationForm" onsubmit="handleCustomerSellSubmit(event)">
+                                <div class="form-grid-2">
+                                    <div class="widget-field">
+                                        <label for="sellBrand">Brand *</label>
+                                        <select id="sellBrand" required onchange="updateModelOptions()">
+                                            <option value="">Select Brand</option>
+                                            <option value="Mahindra">Mahindra</option>
+                                            <option value="Toyota">Toyota</option>
+                                            <option value="Hyundai">Hyundai</option>
+                                            <option value="Tata">Tata Motors</option>
+                                            <option value="Maruti Suzuki">Maruti Suzuki</option>
+                                            <option value="Kia">Kia</option>
+                                            <option value="BMW">BMW</option>
+                                            <option value="Mercedes-Benz">Mercedes-Benz</option>
+                                            <option value="Audi">Audi</option>
+                                            <option value="Volkswagen">Volkswagen</option>
+                                            <option value="Skoda">Skoda</option>
+                                            <option value="Honda">Honda</option>
+                                            <option value="MG">MG</option>
+                                            <option value="Jeep">Jeep</option>
+                                            <option value="Ford">Ford</option>
+                                            <option value="Renault">Renault</option>
+                                            <option value="Nissan">Nissan</option>
+                                            <option value="Volvo">Volvo</option>
+                                            <option value="Other">Other Brand</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="widget-field">
+                                        <label for="sellModel">Model / Variant *</label>
+                                        <input type="text" id="sellModel" required placeholder="e.g. Scorpio N, Creta, Fortuner" oninput="calculateLiveEstimate()">
+                                    </div>
+                                </div>
+
+                                <div class="form-grid-3">
+                                    <div class="widget-field">
+                                        <label for="sellYear">Year *</label>
+                                        <select id="sellYear" required onchange="calculateLiveEstimate()">
+                                            <option value="2025">2025</option>
+                                            <option value="2024">2024</option>
+                                            <option value="2023" selected>2023</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2015">2015</option>
+                                            <option value="2014">2014 & Older</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="widget-field">
+                                        <label for="sellFuel">Fuel *</label>
+                                        <select id="sellFuel" required onchange="calculateLiveEstimate()">
+                                            <option value="Diesel">Diesel</option>
+                                            <option value="Petrol" selected>Petrol</option>
+                                            <option value="CNG">CNG</option>
+                                            <option value="Electric">Electric</option>
+                                            <option value="Hybrid">Hybrid</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="widget-field">
+                                        <label for="sellKms">Km Driven *</label>
+                                        <select id="sellKms" required onchange="calculateLiveEstimate()">
+                                            <option value="Under 20,000 km">Under 20,000 km</option>
+                                            <option value="20,000 - 40,000 km" selected>20,000 - 40,000 km</option>
+                                            <option value="40,000 - 70,000 km">40,000 - 70,000 km</option>
+                                            <option value="70,000 - 1,00,000 km">70,000 - 1,00,000 km</option>
+                                            <option value="Above 1,00,000 km">Above 1,00,000 km</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Live Instant Valuation Display -->
+                                <div class="live-estimate-card" id="liveEstimateBox">
+                                    <div class="estimate-label">Estimated Best Market Offer:</div>
+                                    <div class="estimate-amount" id="estimateDisplay">₹ 14.20 L – ₹ 16.50 L</div>
+                                    <div class="estimate-sub">Instant Doorstep Inspection &amp; Spot Payment Available</div>
+                                </div>
+
+                                <div class="form-grid-2">
+                                    <div class="widget-field">
+                                        <label for="sellerName">Your Name *</label>
+                                        <input type="text" id="sellerName" required placeholder="Full Name">
+                                    </div>
+
+                                    <div class="widget-field">
+                                        <label for="sellerPhone">Phone Number *</label>
+                                        <input type="tel" id="sellerPhone" required pattern="[0-9]{10}" placeholder="10-digit mobile number">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn-pill-gold btn-block">
+                                    <span>Get Instant Quote &amp; Book Free Inspection &rarr;</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -333,6 +555,7 @@
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#showroom">Our Showroom</a></li>
+                        <li><a href="#sell-car">Sell Your Car</a></li>
                         <li><a href="#contact">Contact Us</a></li>
                     </ul>
                 </div>
@@ -371,20 +594,220 @@
                     <span class="sep">&bull;</span>
                     <a href="#" onclick="openStoryModal(); return false;">Privacy Policy</a>
                     <span class="sep">&bull;</span>
-                    <a href="#" onclick="openVisitModal(); return false;">Showroom Locator</a>
+                    <a href="#" onclick="openDealerLoginModal(); return false;" class="dealer-discrete-link">Showroom Staff Login</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- ==================== MODALS ==================== -->
+    <!-- ==================== SHOWROOM ADMIN PORTAL MODALS ==================== -->
+
+    <!-- A. DEALER PASSCODE LOGIN MODAL -->
+    <div class="modal-overlay" id="dealerLoginModal" role="dialog" aria-modal="true" aria-labelledby="dealerLoginTitle">
+        <div class="modal-dialog modal-dialog-sm">
+            <button class="modal-close-icon" onclick="closeModal('dealerLoginModal')" aria-label="Close modal">&times;</button>
+            <div class="modal-head">
+                <span class="eyebrow-badge">SHOWROOM AUTHORIZED ACCESS</span>
+                <h3 class="modal-title" id="dealerLoginTitle">Dealer Admin Portal</h3>
+                <p class="modal-subtitle">Authorized Chaudhary Motors staff only. Enter your dealer PIN to manage cars and inventory.</p>
+            </div>
+            <div class="modal-content-area">
+                <form id="dealerLoginForm" onsubmit="handleDealerLogin(event)">
+                    <div class="input-field-group">
+                        <label for="dealerPin">Security PIN *</label>
+                        <input type="password" id="dealerPin" required placeholder="Enter Showroom PIN" autocomplete="current-password" autofocus>
+                        <span class="field-hint">Showroom Default PIN: <strong>1994</strong></span>
+                    </div>
+                    <div class="form-btn-area">
+                        <button type="submit" class="btn-pill-gold btn-block">Unlock Showroom Controls &rarr;</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- B. ADD / EDIT CAR MODAL (SHOWROOM ONLY) -->
+    <div class="modal-overlay" id="carFormModal" role="dialog" aria-modal="true" aria-labelledby="carFormTitle">
+        <div class="modal-dialog">
+            <button class="modal-close-icon" onclick="closeModal('carFormModal')" aria-label="Close modal">&times;</button>
+            <div class="modal-head">
+                <span class="eyebrow-badge">INVENTORY MANAGEMENT</span>
+                <h3 class="modal-title" id="carFormTitle">Add New Car to Showroom</h3>
+                <p class="modal-subtitle">This car will instantly be added to the showroom inventory. Customers will view it live.</p>
+            </div>
+            <div class="modal-content-area">
+                <form id="carInventoryForm" onsubmit="handleSaveCar(event)">
+                    <input type="hidden" id="editCarId" value="">
+
+                    <div class="input-field-row">
+                        <div class="input-field-group">
+                            <label for="carName">Vehicle Name &amp; Variant *</label>
+                            <input type="text" id="carName" required placeholder="e.g. Mahindra Thar LX 4x4">
+                        </div>
+                        <div class="input-field-group">
+                            <label for="carBrand">Brand *</label>
+                            <input type="text" id="carBrand" required placeholder="e.g. Mahindra, Toyota, BMW">
+                        </div>
+                    </div>
+
+                    <div class="input-field-row">
+                        <div class="input-field-group">
+                            <label for="carYear">Model Year *</label>
+                            <input type="number" id="carYear" required min="2000" max="2026" placeholder="2023">
+                        </div>
+                        <div class="input-field-group">
+                            <label for="carPrice">Showroom Price *</label>
+                            <input type="text" id="carPrice" required placeholder="e.g. ₹ 16.50 Lakh">
+                        </div>
+                    </div>
+
+                    <div class="input-field-row">
+                        <div class="input-field-group">
+                            <label for="carKms">Kilometers Driven *</label>
+                            <input type="text" id="carKms" required placeholder="e.g. 18,000 km">
+                        </div>
+                        <div class="input-field-group">
+                            <label for="carFuel">Fuel Type *</label>
+                            <select id="carFuel" required>
+                                <option value="Diesel">Diesel</option>
+                                <option value="Petrol">Petrol</option>
+                                <option value="CNG">CNG</option>
+                                <option value="Electric">Electric</option>
+                                <option value="Hybrid">Hybrid</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-field-row">
+                        <div class="input-field-group">
+                            <label for="carTrans">Transmission *</label>
+                            <select id="carTrans" required>
+                                <option value="Automatic">Automatic</option>
+                                <option value="Manual">Manual</option>
+                                <option value="Manual 4WD">Manual 4WD</option>
+                                <option value="Automatic 4WD">Automatic 4WD</option>
+                            </select>
+                        </div>
+                        <div class="input-field-group">
+                            <label for="carCategory">Showroom Category *</label>
+                            <select id="carCategory" required>
+                                <option value="suv 4x4">SUV 4x4 Off-Road</option>
+                                <option value="suv">SUV</option>
+                                <option value="luxury">Luxury Elite</option>
+                                <option value="sedan">Sedan</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-field-group">
+                        <label for="carBadge">Status Badge (Optional)</label>
+                        <input type="text" id="carBadge" placeholder="e.g. Ready for Delivery, Single Owner, Certified Elite">
+                    </div>
+
+                    <!-- Photo selector (preset or file upload) -->
+                    <div class="input-field-group">
+                        <label>Vehicle Photo</label>
+                        <div class="photo-select-row">
+                            <select id="carPresetPhoto" onchange="previewPresetPhoto()">
+                                <option value="images/car_thar.jpg">Preset: Mahindra Thar 4x4 (HD)</option>
+                                <option value="images/car_scorpio.jpg">Preset: Mahindra Scorpio-N (HD)</option>
+                                <option value="images/car_fortuner.jpg">Preset: Toyota Fortuner Legender (HD)</option>
+                                <option value="images/hero_cars.jpg">Preset: Mahindra Scorpio Classic (HD)</option>
+                                <option value="images/showroom_2.jpg">Preset: Executive Showroom Lineup</option>
+                                <option value="custom">Custom Image Upload / URL &darr;</option>
+                            </select>
+                        </div>
+                        <div id="customPhotoWrap" style="display: none; margin-top: 8px;">
+                            <input type="file" id="carFileUpload" accept="image/*" onchange="handleCarPhotoUpload(event)">
+                            <input type="url" id="carCustomUrl" placeholder="Or paste Image URL (https://...)" style="margin-top: 6px;">
+                        </div>
+                        <div class="preview-thumb-box" id="carPreviewBox">
+                            <img id="carPreviewImg" src="images/car_thar.jpg" alt="Car Preview">
+                        </div>
+                    </div>
+
+                    <div class="form-btn-area">
+                        <button type="submit" class="btn-pill-gold btn-block" id="saveCarBtn">Save to Showroom Inventory &rarr;</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- C. DEALER DASHBOARD MODAL (MANAGE CARS & VIEW CUSTOMER SELL APPLICATIONS) -->
+    <div class="modal-overlay" id="adminDashboardModal" role="dialog" aria-modal="true" aria-labelledby="dashTitle">
+        <div class="modal-dialog modal-dialog-lg">
+            <button class="modal-close-icon" onclick="closeModal('adminDashboardModal')" aria-label="Close modal">&times;</button>
+            <div class="modal-head">
+                <span class="eyebrow-badge">DEALER CONTROL PANEL</span>
+                <h3 class="modal-title" id="dashTitle">Showroom Administration</h3>
+                <div class="dash-tab-row">
+                    <button class="dash-tab active" id="tabInvBtn" onclick="switchDashTab('inventory')">Manage Cars (<span id="dashInvCount">0</span>)</button>
+                    <button class="dash-tab" id="tabLeadsBtn" onclick="switchDashTab('leads')">Customer Car Sell Requests (<span id="dashLeadsCount">0</span>)</button>
+                </div>
+            </div>
+
+            <div class="modal-content-area">
+                <!-- Tab 1: Cars List -->
+                <div id="dashTabInventory">
+                    <div class="dash-action-bar">
+                        <button class="btn-pill-gold btn-sm" onclick="openAddCarModal()">+ Add New Vehicle</button>
+                        <span class="dash-hint">Cars listed here are visible to all website customers.</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="admin-data-table">
+                            <thead>
+                                <tr>
+                                    <th>Car</th>
+                                    <th>Year</th>
+                                    <th>Price</th>
+                                    <th>Fuel/Trans</th>
+                                    <th>Category</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminInventoryTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Sell Car Leads from Customers -->
+                <div id="dashTabLeads" style="display: none;">
+                    <div class="dash-action-bar">
+                        <span class="dash-hint">Customer applications to sell cars at Chaudhary Motors with instant estimates.</span>
+                        <button class="btn-pill-dark btn-sm" onclick="clearAllLeads()">Clear All History</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="admin-data-table">
+                            <thead>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Car Details</th>
+                                    <th>Estimated Value</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminLeadsTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== COMMON CUSTOMER MODALS ==================== -->
 
     <!-- 1. OUR STORY MODAL -->
     <div class="modal-overlay" id="storyModal" role="dialog" aria-modal="true" aria-labelledby="storyModalTitle">
         <div class="modal-dialog">
             <button class="modal-close-icon" onclick="closeModal('storyModal')" aria-label="Close modal">&times;</button>
             <div class="modal-head">
-                <span class="eyebrow-badge">HERITAGE & EXCELLENCE</span>
+                <span class="eyebrow-badge">HERITAGE &amp; EXCELLENCE</span>
                 <h3 class="modal-title" id="storyModalTitle">Our Story: Built on Integrity Since 1994</h3>
             </div>
             <div class="modal-content-area">
@@ -401,7 +824,7 @@
 
                     <div class="story-pillar">
                         <div class="pillar-symbol">📑</div>
-                        <h4>Clean Title & Non-Accidental</h4>
+                        <h4>Clean Title &amp; Non-Accidental</h4>
                         <p>Every vehicle comes with a 100% verified non-accidental certificate, authenticated odometer reading, and zero-encumbrance legal clear paperwork.</p>
                     </div>
 
@@ -432,7 +855,7 @@
         <div class="modal-dialog">
             <button class="modal-close-icon" onclick="closeModal('visitModal')" aria-label="Close modal">&times;</button>
             <div class="modal-head">
-                <span class="eyebrow-badge">SHOWROOM LOCATION & TIMINGS</span>
+                <span class="eyebrow-badge">SHOWROOM LOCATION &amp; TIMINGS</span>
                 <h3 class="modal-title" id="visitModalTitle">Welcome to Chaudhary Motors</h3>
             </div>
             <div class="modal-content-area">
@@ -482,139 +905,7 @@
         </div>
     </div>
 
-    <!-- 3. CAR INVENTORY SHOWROOM MODAL -->
-    <div class="modal-overlay" id="inventoryModal" role="dialog" aria-modal="true" aria-labelledby="inventoryModalTitle">
-        <div class="modal-dialog modal-dialog-lg">
-            <button class="modal-close-icon" onclick="closeModal('inventoryModal')" aria-label="Close modal">&times;</button>
-            <div class="modal-head">
-                <span class="eyebrow-badge">CERTIFIED FLEET</span>
-                <h3 class="modal-title" id="inventoryModalTitle">Our Available Showroom Inventory</h3>
-                <p class="modal-subtitle">Browse through handpicked, certified luxury SUVs and vehicles ready for immediate ownership.</p>
-            </div>
-            <div class="modal-content-area">
-                
-                <!-- Filter bar -->
-                <div class="inv-filter-controls">
-                    <div class="inv-filter-tags">
-                        <button class="inv-tab active" data-filter="all">All Fleet (4)</button>
-                        <button class="inv-tab" data-filter="suv">SUVs</button>
-                        <button class="inv-tab" data-filter="4x4">4x4 Off-Road</button>
-                        <button class="inv-tab" data-filter="luxury">Luxury</button>
-                    </div>
-                    <div class="inv-search-field">
-                        <input type="text" id="inventorySearch" placeholder="Search by model, brand, or fuel..." onkeyup="filterInventorySearch()">
-                    </div>
-                </div>
-
-                <!-- Vehicles Grid -->
-                <div class="inv-grid-list" id="inventoryGrid">
-                    
-                    <!-- Car 1: Mahindra Thar LX 4x4 -->
-                    <div class="inv-car-item" data-type="suv 4x4" data-name="Mahindra Thar LX Hardtop 4x4">
-                        <div class="car-pic-wrap">
-                            <img src="images/showroom_3.jpg" alt="Mahindra Thar LX Hardtop 4x4">
-                            <span class="car-status-tag">Ready to Deliver</span>
-                        </div>
-                        <div class="car-card-body">
-                            <div class="car-heading-group">
-                                <h4>Mahindra Thar LX 4x4</h4>
-                                <span class="car-year-pill">2023</span>
-                            </div>
-                            <div class="car-spec-chips">
-                                <span>18,000 km</span>
-                                <span class="dot">&bull;</span>
-                                <span>Diesel</span>
-                                <span class="dot">&bull;</span>
-                                <span>Manual 4WD</span>
-                            </div>
-                            <div class="car-bottom-row">
-                                <div class="car-cost">₹ 15.75 Lakh</div>
-                                <button class="btn-select-test" onclick="selectVehicleForLead('Mahindra Thar LX 4x4')">Test Drive</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Car 2: Mahindra Scorpio-N -->
-                    <div class="inv-car-item" data-type="suv" data-name="Mahindra Scorpio-N Z8L Diesel Automatic">
-                        <div class="car-pic-wrap">
-                            <img src="images/showroom_2.jpg" alt="Mahindra Scorpio-N Z8L">
-                            <span class="car-status-tag">Single Owner</span>
-                        </div>
-                        <div class="car-card-body">
-                            <div class="car-heading-group">
-                                <h4>Mahindra Scorpio-N Z8L</h4>
-                                <span class="car-year-pill">2023</span>
-                            </div>
-                            <div class="car-spec-chips">
-                                <span>14,500 km</span>
-                                <span class="dot">&bull;</span>
-                                <span>Diesel</span>
-                                <span class="dot">&bull;</span>
-                                <span>Automatic</span>
-                            </div>
-                            <div class="car-bottom-row">
-                                <div class="car-cost">₹ 22.50 Lakh</div>
-                                <button class="btn-select-test" onclick="selectVehicleForLead('Mahindra Scorpio-N Z8L')">Test Drive</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Car 3: Toyota Fortuner Legender -->
-                    <div class="inv-car-item" data-type="suv luxury" data-name="Toyota Fortuner Legender 4x2 AT">
-                        <div class="car-pic-wrap">
-                            <img src="images/showroom_1.jpg" alt="Toyota Fortuner Legender">
-                            <span class="car-status-tag">Showroom Mint</span>
-                        </div>
-                        <div class="car-card-body">
-                            <div class="car-heading-group">
-                                <h4>Toyota Fortuner Legender</h4>
-                                <span class="car-year-pill">2022</span>
-                            </div>
-                            <div class="car-spec-chips">
-                                <span>28,000 km</span>
-                                <span class="dot">&bull;</span>
-                                <span>Diesel</span>
-                                <span class="dot">&bull;</span>
-                                <span>Automatic</span>
-                            </div>
-                            <div class="car-bottom-row">
-                                <div class="car-cost">₹ 39.80 Lakh</div>
-                                <button class="btn-select-test" onclick="selectVehicleForLead('Toyota Fortuner Legender')">Test Drive</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Car 4: Mahindra Scorpio Classic S11 -->
-                    <div class="inv-car-item" data-type="suv" data-name="Mahindra Scorpio Classic S11">
-                        <div class="car-pic-wrap">
-                            <img src="images/hero_cars.jpg" alt="Mahindra Scorpio Classic S11">
-                            <span class="car-status-tag">Dealer Serviced</span>
-                        </div>
-                        <div class="car-card-body">
-                            <div class="car-heading-group">
-                                <h4>Mahindra Scorpio Classic S11</h4>
-                                <span class="car-year-pill">2023</span>
-                            </div>
-                            <div class="car-spec-chips">
-                                <span>16,200 km</span>
-                                <span class="dot">&bull;</span>
-                                <span>Diesel</span>
-                                <span class="dot">&bull;</span>
-                                <span>Manual</span>
-                            </div>
-                            <div class="car-bottom-row">
-                                <div class="car-cost">₹ 16.90 Lakh</div>
-                                <button class="btn-select-test" onclick="selectVehicleForLead('Mahindra Scorpio Classic S11')">Test Drive</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 4. CONTACT & TEST DRIVE MODAL -->
+    <!-- 3. CONTACT & TEST DRIVE MODAL -->
     <div class="modal-overlay" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
         <div class="modal-dialog">
             <button class="modal-close-icon" onclick="closeModal('contactModal')" aria-label="Close modal">&times;</button>
@@ -677,7 +968,7 @@
         </div>
     </div>
 
-    <!-- 5. LIGHTBOX GALLERY MODAL -->
+    <!-- 4. LIGHTBOX GALLERY MODAL -->
     <div class="lightbox-shade" id="lightboxModal" onclick="closeLightbox()" role="dialog" aria-modal="true" aria-label="Image gallery viewer">
         <div class="lightbox-card" onclick="event.stopPropagation()">
             <button class="lightbox-exit" onclick="closeLightbox()" aria-label="Close viewer">&times;</button>
