@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title>
+            REGISTERATION FORM
+        </title>
+       <script>
+        function data(){
+        var a=document.getElementById("n1").value;
+        var b=document.getElementById("n2").value;
+        var c=document.getElementById("n3").value;
+        var d=document.getElementById("n4").value;        
+        var e=document.getElementById("n5").value;
+        var f=document.getElementById("n6").value;
+        var g=document.getElementById("n7").value;
+        if (a==""|| b=="" ||c=="" ||d=="" ||e=="" ||f=="" ||g=="")
+       {
+        alert("Please fill details in all fields");
+        return false;
+       }
+       else
+       {
+        true;
+       }
+       else if(b.length<10||b.length>10)
+       {
+      
+        alert("Please enter valid phone number");
+       }
+    }
+       </script>
+       <style>
+        *{
+            background-color:rgb(86, 94, 89);
+        }
+        .a1{
+            color:rgb(193, 86, 86);
+            text-align: center;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .b1{
+            color:rgb(220, 226, 224);
+            
+        }
+        .c1{
+            color:rgb(220, 226, 224)
+        }
+        .d1{
+            color:rgb(220, 226, 224)
+        }
+        .e1{
+            color:rgb(220, 226, 224)
+        }
+        .f1{
+            color:rgb(220, 226, 224)
+        }
+        .g1{
+            color:rgb(220, 226, 224)
+        }
+       
+       </style>
+    </head>
+    <body><h1 class="a1">Registeration form</h1>
+        <form onsubmit="data()" action="katoch">
+            <div>
+                <label for="Name" class="b1">Name</label>
+                <input id="Name" type="text" placeholder="Enter Name" id="n1">
+            </div><pre></pre>
+            <div>
+                <label for="Phone Number" class="c1">Phone Number</label>
+          
+                <input id="Phone Number" type="tel" placeholder=" Enter Phone Number" id="n2">
+            </div><pre></pre>
+            <div>
+                <label for="Email" class="d1">Email</label>
+                <input id="Email" type="email" placeholder="Enter Email" id="n3">
+            </div><pre></pre>
+            <div>
+                <label for="Passoward" class="e1">Passoward</label>
+                <input id="Passoward" type="passoward" placeholder="Enter passoward" id="n4">
+            </div><pre></pre>
+            <div>
+                <label for="DOB" class="f1">DOB</label>
+                <input id="DOB" type="date" required id="n5"> 
+            </div><pre></pre>
+            <div>
+                <label for="gender" class="g1">Gender</label>
+                <select id="gender" required id="n6" >
+                <option value="" disabled selected>select gender</option>
+                <option value="male">Male</option>
+                <option value="Female">Female</option>
+                <option value="others">others</option>
+                </select>
+
+            </div><pre></pre>
+            <div>
+                <label for="terms">I agree to the terms and conditons</label>
+                <input id="terms" type="checkbox" required id="n7">
+
+            </div>
+            <div>
+                <input type="submit" value="Submit">
+            </div>
+        </form>

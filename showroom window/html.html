@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaudhary Motors | Premium Pre-Owned Cars Since 1994</title>
+    <meta name="description" content="Chaudhary Motors - Since 1994. Your Trusted Destination for Premium Pre-Owned Cars. 150+ point quality checks, certified excellence, and seamless ownership.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9C2.1 11.1 2 11.5 2 12v4c0 .6.4 1 1 1h2'/><circle cx='7' cy='17' r='2'/><path d='M9 17h6'/><circle cx='17' cy='17' r='2'/></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo" aria-label="Chaudhary Motors Home">
+                <span class="logo-text">CHAUDHARY MOTORS</span>
+            </a>
+
+            <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About Us</a></li>
+                    <li><a href="#showroom" class="nav-link">Our Showroom</a></li>
+                    <li><a href="#contact" class="nav-link">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="tel:+919810000000" class="btn-phone-pill" id="navPhoneBtn">
+                    <svg class="nav-phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <span>+91 981XXXXXXX</span>
+                </a>
+
+                <!-- Mobile Hamburger Button -->
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Navigation Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-section" id="home">
+            <div class="hero-bg-container">
+                <div class="hero-img-layer" id="heroBgImage"></div>
+                <div class="hero-gradient-overlay"></div>
+            </div>
+
+            <div class="container hero-content-wrapper">
+                <div class="hero-slider" id="heroSlider">
+                    
+                    <!-- Slide 1 (Matching screenshot exactly) -->
+                    <div class="hero-slide active" data-slide="0">
+                        <div class="eyebrow-container">
+                            <span class="eyebrow-text">TRUSTED FOR GENERATIONS</span>
+                            <span class="eyebrow-divider"></span>
+                        </div>
+                        <h1 class="hero-headline">
+                            Chaudhary<br>
+                            Motors
+                        </h1>
+                        <p class="hero-since">Since <span>1994</span></p>
+                        <p class="hero-subtext">Your Trusted Destination for Premium Pre-Owned Cars</p>
+                        <div class="hero-button-wrap">
+                            <button class="btn-pill-dark" id="heroExploreBtn" onclick="openInventoryModal()">
+                                <span>Explore Our Showroom</span>
+                                <svg class="btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="hero-slide" data-slide="1">
+                        <div class="eyebrow-container">
+                            <span class="eyebrow-text">UNCOMPROMISING STANDARDS</span>
+                            <span class="eyebrow-divider"></span>
+                        </div>
+                        <h1 class="hero-headline">
+                            Certified<br>
+                            Excellence
+                        </h1>
+                        <p class="hero-since">Over <span>150+</span> Multi-Point Checks</p>
+                        <p class="hero-subtext">Every vehicle is inspected, serviced, and detailed to pristine showroom perfection</p>
+                        <div class="hero-button-wrap">
+                            <button class="btn-pill-dark" onclick="openStoryModal()">
+                                <span>Our Quality Standards</span>
+                                <svg class="btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="hero-slide" data-slide="2">
+                        <div class="eyebrow-container">
+                            <span class="eyebrow-text">INSTANT OWNERSHIP</span>
+                            <span class="eyebrow-divider"></span>
+                        </div>
+                        <h1 class="hero-headline">
+                            Drive Away<br>
+                            In Peace
+                        </h1>
+                        <p class="hero-since">Hassle-Free <span>RC & Finance</span></p>
+                        <p class="hero-subtext">On-the-spot vehicle exchange valuations, instant loans and guaranteed buyback</p>
+                        <div class="hero-button-wrap">
+                            <button class="btn-pill-dark" onclick="openContactModal('Test Drive & Finance Inquiry')">
+                                <span>Book a Test Drive</span>
+                                <svg class="btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Carousel Dots (Bottom Left as in UI) -->
+                <div class="hero-dots-row" id="heroDots" role="tablist" aria-label="Hero slider pagination">
+                    <button class="dot-btn active" data-index="0" role="tab" aria-selected="true" aria-label="Go to slide 1"></button>
+                    <button class="dot-btn" data-index="1" role="tab" aria-selected="false" aria-label="Go to slide 2"></button>
+                    <button class="dot-btn" data-index="2" role="tab" aria-selected="false" aria-label="Go to slide 3"></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT US SECTION -->
+        <section class="about-section" id="about">
+            <div class="about-contour-bg" aria-hidden="true">
+                <svg viewBox="0 0 1000 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M-100 200 C 200 150, 400 400, 700 300 C 900 200, 1100 350, 1200 320" stroke="rgba(255,255,255,0.035)" stroke-width="1.5" />
+                    <path d="M-100 280 C 250 220, 450 480, 750 380 C 950 280, 1150 430, 1250 400" stroke="rgba(255,255,255,0.04)" stroke-width="1.5" />
+                    <path d="M-100 360 C 300 300, 500 560, 800 460 C 1000 360, 1200 510, 1300 480" stroke="rgba(255,255,255,0.03)" stroke-width="1.5" />
+                    <path d="M-100 440 C 350 380, 550 640, 850 540 C 1050 440, 1250 590, 1350 560" stroke="rgba(255,255,255,0.025)" stroke-width="1.5" />
+                </svg>
+            </div>
+
+            <div class="container about-layout">
+                <!-- Left text column -->
+                <div class="about-info-col">
+                    <div class="eyebrow-container">
+                        <span class="eyebrow-text">ABOUT US</span>
+                        <span class="eyebrow-divider"></span>
+                    </div>
+
+                    <h2 class="section-heading">
+                        A Legacy of Trust<br>
+                        Since 1994
+                    </h2>
+
+                    <p class="about-lead-text">
+                        Chaudhary Motors has been a name of trust, reliability and excellence in the pre-owned car market. For over three decades, we have proudly served countless customers, helping them find the perfect car with confidence and peace of mind.
+                    </p>
+
+                    <div class="about-action-row">
+                        <button class="btn-pill-dark" id="aboutStoryBtn" onclick="openStoryModal()">
+                            <span>Our Story</span>
+                            <svg class="btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Trust Stats Badges -->
+                    <div class="stats-pills-row">
+                        <div class="stat-pill">
+                            <span class="stat-digit">30+</span>
+                            <span class="stat-desc">Years of Trust</span>
+                        </div>
+                        <div class="stat-pill">
+                            <span class="stat-digit">150+</span>
+                            <span class="stat-desc">Quality Checks</span>
+                        </div>
+                        <div class="stat-pill">
+                            <span class="stat-digit">25,000+</span>
+                            <span class="stat-desc">Happy Customers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right image column -->
+                <div class="about-visual-col">
+                    <div class="about-card-frame" onclick="openLightbox(1)" title="Click to enlarge view">
+                        <img src="images/about_showroom.jpg" alt="Chaudhary Motors Indoor Showroom" class="about-main-img" loading="lazy">
+                        <div class="about-card-glow"></div>
+                        <div class="about-badge-tag">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                            <span>Verified Facility</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR SHOWROOM SECTION -->
+        <section class="showroom-section" id="showroom">
+            <div class="container">
+                <div class="showroom-header">
+                    <div class="showroom-title-group">
+                        <div class="eyebrow-container">
+                            <span class="eyebrow-text">OUR SHOWROOM</span>
+                            <span class="eyebrow-divider"></span>
+                        </div>
+                        <h2 class="section-heading">
+                            A Wide Range of<br>
+                            Premium Pre-Owned Cars
+                        </h2>
+                    </div>
+
+                    <div class="showroom-cta-group">
+                        <button class="btn-link-arrow" id="visitShowroomAction" onclick="openVisitModal()">
+                            <span>Visit Our Showroom</span>
+                            <svg class="arrow-forward-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3 CARDS IN A ROW EXACTLY AS IN THE SCREENSHOT -->
+                <div class="showroom-grid">
+                    
+                    <!-- Card 1 -->
+                    <div class="showroom-card" onclick="openLightbox(0)" tabindex="0" role="button" aria-label="View Exterior Showroom Display">
+                        <div class="card-inner">
+                            <img src="images/showroom_1.jpg" alt="Chaudhary Motors Exterior Showroom Front" class="card-photo" loading="lazy">
+                            <div class="card-hover-mask">
+                                <span class="card-tag">Exterior Showroom</span>
+                                <span class="card-expand-link">Inspect Gallery &rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="showroom-card" onclick="openLightbox(1)" tabindex="0" role="button" aria-label="View Indoor Showroom Lounge">
+                        <div class="card-inner">
+                            <img src="images/showroom_2.jpg" alt="Chaudhary Motors Indoor Executive Display" class="card-photo" loading="lazy">
+                            <div class="card-hover-mask">
+                                <span class="card-tag">Indoor Showroom</span>
+                                <span class="card-expand-link">Inspect Gallery &rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="showroom-card" onclick="openLightbox(2)" tabindex="0" role="button" aria-label="View 4x4 Lineup">
+                        <div class="card-inner">
+                            <img src="images/showroom_3.jpg" alt="Chaudhary Motors 4x4 Thar and SUV Fleet" class="card-photo" loading="lazy">
+                            <div class="card-hover-mask">
+                                <span class="card-tag">4x4 & SUV Lineup</span>
+                                <span class="card-expand-link">Inspect Gallery &rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Quick Inventory Discovery Strip -->
+                <div class="inventory-banner-strip">
+                    <div class="inventory-status-chip">
+                        <span class="live-status-dot"></span>
+                        <span>40+ Verified Vehicles In Showroom Available Today</span>
+                    </div>
+                    <button class="btn-browse-inv" onclick="openInventoryModal()">
+                        Browse Inventory &rarr;
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- GET IN TOUCH FLOATING BAR -->
+        <section class="contact-banner-section" id="contact">
+            <div class="container">
+                <div class="contact-floating-pill">
+                    <div class="contact-pill-left">
+                        <div class="headset-badge">
+                            <svg class="headset-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                            </svg>
+                        </div>
+                        <div class="contact-text-wrap">
+                            <h3 class="contact-pill-title">Get in Touch</h3>
+                            <p class="contact-pill-desc">We'd love to hear from you!</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-pill-right">
+                        <button class="btn-pill-white" id="pillPhoneAction" onclick="openContactModal('Contact Section Call Action')">
+                            <svg class="phone-dark-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.43-3.9-6.82-6.82l1.97-1.57c.27-.27.35-.65.24-1.01A11.36 11.36 0 0 1 8.73 4c0-.55-.45-1-1-1H4.21C3.65 3 3 3.45 3 4.01 3 13.39 10.61 21 19.99 21c.56 0 1.01-.65 1.01-1.21v-3.41c0-.56-.45-1-0.99-1z"/>
+                            </svg>
+                            <span>+91 981XXXXXXX</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-primary-row">
+                
+                <!-- Left brand -->
+                <div class="footer-brand-col">
+                    <div class="footer-logo">CHAUDHARY MOTORS</div>
+                    <div class="footer-tagline">Since 1994</div>
+                </div>
+
+                <!-- Center navigation -->
+                <div class="footer-nav-col">
+                    <ul class="footer-nav-list">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#showroom">Our Showroom</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Right social icons -->
+                <div class="footer-social-col">
+                    <div class="social-links-set">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="Chaudhary Motors on Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="Chaudhary Motors on Facebook">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="Chaudhary Motors on YouTube">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.4 8.6.4 8.6.4s6.88 0 8.6-.4a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#0c0e12"></polygon>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom legal note -->
+            <div class="footer-legal-row">
+                <p>&copy; 2026 Chaudhary Motors. All Rights Reserved. Built with trust & precision.</p>
+                <div class="footer-sub-links">
+                    <a href="#" onclick="openStoryModal(); return false;">Terms of Service</a>
+                    <span class="sep">&bull;</span>
+                    <a href="#" onclick="openStoryModal(); return false;">Privacy Policy</a>
+                    <span class="sep">&bull;</span>
+                    <a href="#" onclick="openVisitModal(); return false;">Showroom Locator</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- 1. OUR STORY MODAL -->
+    <div class="modal-overlay" id="storyModal" role="dialog" aria-modal="true" aria-labelledby="storyModalTitle">
+        <div class="modal-dialog">
+            <button class="modal-close-icon" onclick="closeModal('storyModal')" aria-label="Close modal">&times;</button>
+            <div class="modal-head">
+                <span class="eyebrow-badge">HERITAGE & EXCELLENCE</span>
+                <h3 class="modal-title" id="storyModalTitle">Our Story: Built on Integrity Since 1994</h3>
+            </div>
+            <div class="modal-content-area">
+                <p class="story-highlight-lead">
+                    In 1994, Chaudhary Motors started with a singular conviction: buying a pre-owned car should feel every bit as proud, reliable, and celebratory as driving a brand-new vehicle off the showroom floor.
+                </p>
+
+                <div class="story-pillars-grid">
+                    <div class="story-pillar">
+                        <div class="pillar-symbol">🛡️</div>
+                        <h4>150+ Multi-Point Inspection</h4>
+                        <p>Our dedicated certified diagnostic team examines engine compression, suspension, electronics, chassis integrity, and OBD sensors before any car earns our seal.</p>
+                    </div>
+
+                    <div class="story-pillar">
+                        <div class="pillar-symbol">📑</div>
+                        <h4>Clean Title & Non-Accidental</h4>
+                        <p>Every vehicle comes with a 100% verified non-accidental certificate, authenticated odometer reading, and zero-encumbrance legal clear paperwork.</p>
+                    </div>
+
+                    <div class="story-pillar">
+                        <div class="pillar-symbol">🤝</div>
+                        <h4>Over 25,000 Joyful Deliveries</h4>
+                        <p>Generations of car lovers and families continue to trust us across North India for fair valuations, genuine guidance, and after-sale support.</p>
+                    </div>
+
+                    <div class="story-pillar">
+                        <div class="pillar-symbol">⚡</div>
+                        <h4>One-Window Handover</h4>
+                        <p>Enjoy prompt RC transfer assistance, instant financing with low interest rates from premier banks, and comprehensive warranty coverage.</p>
+                    </div>
+                </div>
+
+                <div class="modal-action-row">
+                    <button class="btn-pill-white" onclick="closeModal('storyModal'); openContactModal('Inquire After Reading Story');">
+                        Book a Personalized Consultation &rarr;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. VISIT SHOWROOM MODAL -->
+    <div class="modal-overlay" id="visitModal" role="dialog" aria-modal="true" aria-labelledby="visitModalTitle">
+        <div class="modal-dialog">
+            <button class="modal-close-icon" onclick="closeModal('visitModal')" aria-label="Close modal">&times;</button>
+            <div class="modal-head">
+                <span class="eyebrow-badge">SHOWROOM LOCATION & TIMINGS</span>
+                <h3 class="modal-title" id="visitModalTitle">Welcome to Chaudhary Motors</h3>
+            </div>
+            <div class="modal-content-area">
+                <div class="location-cards-stack">
+                    <div class="location-item">
+                        <div class="loc-icon">📍</div>
+                        <div>
+                            <strong>Showroom Address</strong>
+                            <p>Chaudhary Motors Campus, Prime Auto Hub, Main Ring Highway, Sector 14</p>
+                        </div>
+                    </div>
+                    <div class="location-item">
+                        <div class="loc-icon">🕒</div>
+                        <div>
+                            <strong>Showroom Hours</strong>
+                            <p>Monday to Sunday &bull; 10:00 AM – 8:30 PM (Open All 7 Days)</p>
+                        </div>
+                    </div>
+                    <div class="location-item">
+                        <div class="loc-icon">📞</div>
+                        <div>
+                            <strong>Priority VIP Assistance</strong>
+                            <p>Direct Showroom Line: +91 981XXXXXXX / 011-2804XXXX</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interactive-map-box">
+                    <div class="map-inner-graphic">
+                        <div class="map-target-pin">
+                            <div class="target-glow"></div>
+                            <span>Chaudhary Motors Showroom</span>
+                        </div>
+                        <p class="map-caption">State-of-the-art air-conditioned indoor lounge, private test-drive circuit, and customer cafe.</p>
+                    </div>
+                </div>
+
+                <div class="modal-dual-buttons">
+                    <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="btn-pill-white">
+                        Open Navigation in Google Maps &rarr;
+                    </a>
+                    <button class="btn-pill-dark" onclick="closeModal('visitModal'); openContactModal('Book Showroom VIP Visit');">
+                        Schedule an Appointment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. CAR INVENTORY SHOWROOM MODAL -->
+    <div class="modal-overlay" id="inventoryModal" role="dialog" aria-modal="true" aria-labelledby="inventoryModalTitle">
+        <div class="modal-dialog modal-dialog-lg">
+            <button class="modal-close-icon" onclick="closeModal('inventoryModal')" aria-label="Close modal">&times;</button>
+            <div class="modal-head">
+                <span class="eyebrow-badge">CERTIFIED FLEET</span>
+                <h3 class="modal-title" id="inventoryModalTitle">Our Available Showroom Inventory</h3>
+                <p class="modal-subtitle">Browse through handpicked, certified luxury SUVs and vehicles ready for immediate ownership.</p>
+            </div>
+            <div class="modal-content-area">
+                
+                <!-- Filter bar -->
+                <div class="inv-filter-controls">
+                    <div class="inv-filter-tags">
+                        <button class="inv-tab active" data-filter="all">All Fleet (4)</button>
+                        <button class="inv-tab" data-filter="suv">SUVs</button>
+                        <button class="inv-tab" data-filter="4x4">4x4 Off-Road</button>
+                        <button class="inv-tab" data-filter="luxury">Luxury</button>
+                    </div>
+                    <div class="inv-search-field">
+                        <input type="text" id="inventorySearch" placeholder="Search by model, brand, or fuel..." onkeyup="filterInventorySearch()">
+                    </div>
+                </div>
+
+                <!-- Vehicles Grid -->
+                <div class="inv-grid-list" id="inventoryGrid">
+                    
+                    <!-- Car 1: Mahindra Thar LX 4x4 -->
+                    <div class="inv-car-item" data-type="suv 4x4" data-name="Mahindra Thar LX Hardtop 4x4">
+                        <div class="car-pic-wrap">
+                            <img src="images/showroom_3.jpg" alt="Mahindra Thar LX Hardtop 4x4">
+                            <span class="car-status-tag">Ready to Deliver</span>
+                        </div>
+                        <div class="car-card-body">
+                            <div class="car-heading-group">
+                                <h4>Mahindra Thar LX 4x4</h4>
+                                <span class="car-year-pill">2023</span>
+                            </div>
+                            <div class="car-spec-chips">
+                                <span>18,000 km</span>
+                                <span class="dot">&bull;</span>
+                                <span>Diesel</span>
+                                <span class="dot">&bull;</span>
+                                <span>Manual 4WD</span>
+                            </div>
+                            <div class="car-bottom-row">
+                                <div class="car-cost">₹ 15.75 Lakh</div>
+                                <button class="btn-select-test" onclick="selectVehicleForLead('Mahindra Thar LX 4x4')">Test Drive</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car 2: Mahindra Scorpio-N -->
+                    <div class="inv-car-item" data-type="suv" data-name="Mahindra Scorpio-N Z8L Diesel Automatic">
+                        <div class="car-pic-wrap">
+                            <img src="images/showroom_2.jpg" alt="Mahindra Scorpio-N Z8L">
+                            <span class="car-status-tag">Single Owner</span>
+                        </div>
+                        <div class="car-card-body">
+                            <div class="car-heading-group">
+                                <h4>Mahindra Scorpio-N Z8L</h4>
+                                <span class="car-year-pill">2023</span>
+                            </div>
+                            <div class="car-spec-chips">
+                                <span>14,500 km</span>
+                                <span class="dot">&bull;</span>
+                                <span>Diesel</span>
+                                <span class="dot">&bull;</span>
+                                <span>Automatic</span>
+                            </div>
+                            <div class="car-bottom-row">
+                                <div class="car-cost">₹ 22.50 Lakh</div>
+                                <button class="btn-select-test" onclick="selectVehicleForLead('Mahindra Scorpio-N Z8L')">Test Drive</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car 3: Toyota Fortuner Legender -->
+                    <div class="inv-car-item" data-type="suv luxury" data-name="Toyota Fortuner Legender 4x2 AT">
+                        <div class="car-pic-wrap">
+                            <img src="images/showroom_1.jpg" alt="Toyota Fortuner Legender">
+                            <span class="car-status-tag">Showroom Mint</span>
+                        </div>
+                        <div class="car-card-body">
+                            <div class="car-heading-group">
+                                <h4>Toyota Fortuner Legender</h4>
+                                <span class="car-year-pill">2022</span>
+                            </div>
+                            <div class="car-spec-chips">
+                                <span>28,000 km</span>
+                                <span class="dot">&bull;</span>
+                                <span>Diesel</span>
+                                <span class="dot">&bull;</span>
+                                <span>Automatic</span>
+                            </div>
+                            <div class="car-bottom-row">
+                                <div class="car-cost">₹ 39.80 Lakh</div>
+                                <button class="btn-select-test" onclick="selectVehicleForLead('Toyota Fortuner Legender')">Test Drive</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car 4: Mahindra Scorpio Classic S11 -->
+                    <div class="inv-car-item" data-type="suv" data-name="Mahindra Scorpio Classic S11">
+                        <div class="car-pic-wrap">
+                            <img src="images/hero_cars.jpg" alt="Mahindra Scorpio Classic S11">
+                            <span class="car-status-tag">Dealer Serviced</span>
+                        </div>
+                        <div class="car-card-body">
+                            <div class="car-heading-group">
+                                <h4>Mahindra Scorpio Classic S11</h4>
+                                <span class="car-year-pill">2023</span>
+                            </div>
+                            <div class="car-spec-chips">
+                                <span>16,200 km</span>
+                                <span class="dot">&bull;</span>
+                                <span>Diesel</span>
+                                <span class="dot">&bull;</span>
+                                <span>Manual</span>
+                            </div>
+                            <div class="car-bottom-row">
+                                <div class="car-cost">₹ 16.90 Lakh</div>
+                                <button class="btn-select-test" onclick="selectVehicleForLead('Mahindra Scorpio Classic S11')">Test Drive</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. CONTACT & TEST DRIVE MODAL -->
+    <div class="modal-overlay" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+        <div class="modal-dialog">
+            <button class="modal-close-icon" onclick="closeModal('contactModal')" aria-label="Close modal">&times;</button>
+            <div class="modal-head">
+                <span class="eyebrow-badge">CONNECT WITH US</span>
+                <h3 class="modal-title" id="contactModalTitle">Get in Touch / Book Test Drive</h3>
+                <p class="modal-subtitle">Submit your inquiry and our showroom executive will call back within 15 minutes.</p>
+            </div>
+            <div class="modal-content-area">
+                <form id="contactForm" onsubmit="submitLeadForm(event)">
+                    <div class="input-field-group">
+                        <label for="clientName">Your Name *</label>
+                        <input type="text" id="clientName" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="input-field-row">
+                        <div class="input-field-group">
+                            <label for="clientPhone">Mobile Number *</label>
+                            <input type="tel" id="clientPhone" required pattern="[0-9]{10}" placeholder="10-digit mobile number">
+                        </div>
+                        <div class="input-field-group">
+                            <label for="prefDate">Preferred Date</label>
+                            <input type="date" id="prefDate">
+                        </div>
+                    </div>
+
+                    <div class="input-field-group">
+                        <label for="targetCar">Vehicle of Interest</label>
+                        <select id="targetCar">
+                            <option value="General Inquiry">General Showroom Inquiry</option>
+                            <option value="Mahindra Thar LX 4x4">Mahindra Thar LX Hardtop 4x4</option>
+                            <option value="Mahindra Scorpio-N Z8L">Mahindra Scorpio-N Z8L</option>
+                            <option value="Toyota Fortuner Legender">Toyota Fortuner Legender</option>
+                            <option value="Mahindra Scorpio Classic S11">Mahindra Scorpio Classic S11</option>
+                            <option value="Vehicle Exchange / Sell My Car">Sell / Exchange My Existing Car</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field-group">
+                        <label for="clientNotes">Message / Requirements</label>
+                        <textarea id="clientNotes" rows="3" placeholder="Tell us if you want loan financing, doorstep evaluation, etc."></textarea>
+                    </div>
+
+                    <div class="form-btn-area">
+                        <button type="submit" class="btn-pill-white btn-block">Confirm Inquiry &rarr;</button>
+                    </div>
+                </form>
+
+                <div class="call-direct-divider">
+                    <span>Or Connect Instantly Over Call</span>
+                </div>
+
+                <a href="tel:+919810000000" class="direct-phone-action">
+                    <svg class="phone-dark-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.43-3.9-6.82-6.82l1.97-1.57c.27-.27.35-.65.24-1.01A11.36 11.36 0 0 1 8.73 4c0-.55-.45-1-1-1H4.21C3.65 3 3 3.45 3 4.01 3 13.39 10.61 21 19.99 21c.56 0 1.01-.65 1.01-1.21v-3.41c0-.56-.45-1-0.99-1z"/>
+                    </svg>
+                    <span>Direct Desk: +91 981XXXXXXX</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. LIGHTBOX GALLERY MODAL -->
+    <div class="lightbox-shade" id="lightboxModal" onclick="closeLightbox()" role="dialog" aria-modal="true" aria-label="Image gallery viewer">
+        <div class="lightbox-card" onclick="event.stopPropagation()">
+            <button class="lightbox-exit" onclick="closeLightbox()" aria-label="Close viewer">&times;</button>
+            <div class="lightbox-stage">
+                <img id="lightboxCurrentImg" src="" alt="Showroom View High-Resolution">
+            </div>
+            <div class="lightbox-meta-bar">
+                <div class="lightbox-caption-text" id="lightboxCaption">Chaudhary Motors Showroom</div>
+                <div class="lightbox-paging">
+                    <button class="lb-arrow" onclick="prevLightboxSlide()" aria-label="Previous image">&larr;</button>
+                    <span id="lightboxCounter">1 / 3</span>
+                    <button class="lb-arrow" onclick="nextLightboxSlide()" aria-label="Next image">&rarr;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATIONS POPUP -->
+    <div class="toast-holder" id="toastHolder" aria-live="polite"></div>
+
+    <!-- JS SCRIPT -->
+    <script src="script.js"></script>
+</body>
+</html>
